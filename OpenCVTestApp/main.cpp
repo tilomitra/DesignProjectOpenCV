@@ -22,6 +22,8 @@
 #include "FaceRec.h"
 #include <string.h>
 #include <dirent.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 using namespace std;
 
 
@@ -41,6 +43,7 @@ using namespace std;
     char folder[256];
     char image[256];
     char imagename[256];
+    char folderpath[256];
     
     // initializations
     IplImage * pInpImg = 0;
@@ -48,7 +51,7 @@ using namespace std;
     IplImage * imageProcessed = 0;
     
     //ask for filename
-    do {
+    /*do {
     cout << "Please enter a filename: ";
     scanf("%s", folder);
     sprintf(image, "%s%s", "/Users/sachi/Downloads/haarcascades/", folder);
@@ -60,6 +63,8 @@ using namespace std;
     for(j=1;j<11;j++)
     {
     sprintf(imagename, "%s%s%s%s%i.jpg", "/Users/sachi/Downloads/haarcascades/", folder,"/",folder,j);
+    sprintf(folderpath,"%s%s%s","/Users/sachi/Downloads/haarcascades/",folder,"/face/");
+    mkdir(folderpath, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
     pInpImg = cvLoadImage(imagename, CV_LOAD_IMAGE_UNCHANGED);
     pStorage = cvCreateMemStorage(0);
     pCascade = (CvHaarClassifierCascade *)cvLoad
@@ -90,6 +95,7 @@ using namespace std;
         
     // File strings
         char filepath[256];
+      
         
     
     // draw a rectangular outline around each detection
@@ -109,7 +115,8 @@ using namespace std;
         cvResetImageROI( pInpImg );//reset region of interest
         
         imageProcessed = Equalize(img);
-        
+
+
         sprintf(filepath,"%s%s%s%s%d_%d.jpg", "/Users/sachi/Downloads/haarcascades/",folder,"/face/",folder, j, i);
         
         cvSaveImage(filepath,imageProcessed); 
@@ -125,8 +132,7 @@ using namespace std;
     //cvWaitKey(0);
     //cvDestroyWindow("Haar Window");
     
-    //learn("/Users/sachi/Downloads/haarcascades/train.txt");
-    //recognize("/Users/sachi/Downloads/haarcascades/test.txt");
+
         
     // clean up and release resources
     cvReleaseImage(&pInpImg);
@@ -141,6 +147,9 @@ using namespace std;
     cout << "Do you want to continue? [y/n]" << endl;
     cin >> response;
     }while(response.compare("y") == 0);
+*/    
+    learn("/Users/sachi/Downloads/haarcascades/train.txt");
+    recognizeFileList("/Users/sachi/Downloads/haarcascades/test.txt");
     
     return 0;
  
