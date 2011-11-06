@@ -22,6 +22,10 @@
 		1929013D1456557100CB101A /* libopencv_objdetect.2.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 192901301456557100CB101A /* libopencv_objdetect.2.3.1.dylib */; };
 		1929013E1456557100CB101A /* libopencv_ts.2.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 192901311456557100CB101A /* libopencv_ts.2.3.1.dylib */; };
 		1929013F1456557100CB101A /* libopencv_video.2.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 192901321456557100CB101A /* libopencv_video.2.3.1.dylib */; };
+		198E6AEF1465DD1F00C81D3E /* FaceDetect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 198E6AEE1465DD1F00C81D3E /* FaceDetect.cpp */; };
+		198E6AF21465E43200C81D3E /* GetDirectoryFiles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 198E6AF11465E43200C81D3E /* GetDirectoryFiles.cpp */; };
+		198E6AF41465F01600C81D3E /* FaceRec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 198E6AF31465F01600C81D3E /* FaceRec.cpp */; };
+		198E6AF61465F98400C81D3E /* PreProcess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 198E6AF51465F98400C81D3E /* PreProcess.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +58,12 @@
 		192901301456557100CB101A /* libopencv_objdetect.2.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_objdetect.2.3.1.dylib; path = ../../../../../../usr/local/lib/libopencv_objdetect.2.3.1.dylib; sourceTree = "<group>"; };
 		192901311456557100CB101A /* libopencv_ts.2.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_ts.2.3.1.dylib; path = ../../../../../../usr/local/lib/libopencv_ts.2.3.1.dylib; sourceTree = "<group>"; };
 		192901321456557100CB101A /* libopencv_video.2.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.2.3.1.dylib; path = ../../../../../../usr/local/lib/libopencv_video.2.3.1.dylib; sourceTree = "<group>"; };
+		193F747B1460C50D000F96C3 /* FaceDetect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetect.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		193F747D1460CF9C000F96C3 /* GetDirectoryFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetDirectoryFiles.h; sourceTree = "<group>"; };
+		198E6AEE1465DD1F00C81D3E /* FaceDetect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FaceDetect.cpp; sourceTree = "<group>"; };
+		198E6AF11465E43200C81D3E /* GetDirectoryFiles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GetDirectoryFiles.cpp; sourceTree = "<group>"; };
+		198E6AF31465F01600C81D3E /* FaceRec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FaceRec.cpp; sourceTree = "<group>"; };
+		198E6AF51465F98400C81D3E /* PreProcess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PreProcess.cpp; sourceTree = "<group>"; };
 		19D5ACCC145C7FEA001CF1D2 /* PreProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreProcess.h; sourceTree = "<group>"; };
 		19D5ACD8145DDB09001CF1D2 /* FaceRec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceRec.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,8 +113,14 @@
 			children = (
 				192901251456553A00CB101A /* OpenCV Framework */,
 				1929011C145654CB00CB101A /* main.cpp */,
+				193F747B1460C50D000F96C3 /* FaceDetect.h */,
+				198E6AEE1465DD1F00C81D3E /* FaceDetect.cpp */,
+				193F747D1460CF9C000F96C3 /* GetDirectoryFiles.h */,
+				198E6AF11465E43200C81D3E /* GetDirectoryFiles.cpp */,
 				19D5ACD8145DDB09001CF1D2 /* FaceRec.h */,
+				198E6AF31465F01600C81D3E /* FaceRec.cpp */,
 				19D5ACCC145C7FEA001CF1D2 /* PreProcess.h */,
+				198E6AF51465F98400C81D3E /* PreProcess.cpp */,
 				1929011E145654CB00CB101A /* OpenCVTestApp.1 */,
 			);
 			path = OpenCVTestApp;
@@ -181,6 +197,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1929011D145654CB00CB101A /* main.cpp in Sources */,
+				198E6AEF1465DD1F00C81D3E /* FaceDetect.cpp in Sources */,
+				198E6AF21465E43200C81D3E /* GetDirectoryFiles.cpp in Sources */,
+				198E6AF41465F01600C81D3E /* FaceRec.cpp in Sources */,
+				198E6AF61465F98400C81D3E /* PreProcess.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +228,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include/boost,
+					/usr/local/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -230,7 +253,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = (
+					/opt/local/include/boost,
+					/usr/local/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
