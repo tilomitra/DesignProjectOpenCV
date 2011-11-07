@@ -15,7 +15,7 @@ void GetDirectoryFiles(char * folder)
     FILE *fr;
     int depth,l,w,q;
     char *material,code;
-    char directory[]="/Users/sachi/Downloads/haarcascades/";
+    char directory[]="/Users/Tilo/DesignProj/pictures/";
     char file[25];//not used - redundant?
     char str[50]; //maybe make this larger
     string array[100];
@@ -41,7 +41,7 @@ void GetDirectoryFiles(char * folder)
         
     FILE * pFile;
     
-    pFile = fopen ("/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/myfile.txt","w");
+    pFile = fopen ("/Users/Tilo/DesignProj/pictures/myfile.txt","w");
     fputs(str,pFile);
     fclose(pFile);
    

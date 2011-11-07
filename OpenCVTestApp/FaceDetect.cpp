@@ -22,12 +22,12 @@ int FaceDetect()
   //  ofstream file;
     //File Strings
     char foldername[256];
-    char folderlocation[256] = "/Users/sachi/Downloads/haarcascades/";
+    char folderlocation[256] = "/Users/Tilo/DesignProj/pictures/";
     char imagelocation[256];
     char imagename[256];
     char facepath[256];
     char facename[256];
-    char haarcascadelocation[256] = "/Users/sachi/Downloads/haarcascades/haarcascade_frontalface_alt.xml";
+    char haarcascadelocation[256] = "/Users/Tilo/DesignProj/haarcascades/haarcascade_frontalface_alt.xml";
     string array[25];
     char user;
     // initializations
@@ -35,7 +35,7 @@ int FaceDetect()
     IplImage * faceimage = 0;
     IplImage * equalizedface = 0;
     
-    ifstream file("/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/myfile.txt");
+    ifstream file("/Users/Tilo/DesignProj/pictures/myfile.txt");
     string fileline[30];
     int a = 0;
     size_t found;
@@ -144,14 +144,14 @@ int FaceDetect()
          {
          in >> array[i];
          */
-        
+        file.close();
         cout << "Do you want to continue? [y/n]" << endl;
         cin >> response;
         
     }while(response.compare("y") == 0);
     
 
-    file.close();
+
     return 0;
 
 

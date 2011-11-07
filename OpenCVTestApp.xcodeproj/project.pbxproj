@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1929011D145654CB00CB101A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1929011C145654CB00CB101A /* main.cpp */; };
 		1929011F145654CB00CB101A /* OpenCVTestApp.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929011E145654CB00CB101A /* OpenCVTestApp.1 */; };
 		192901331456557100CB101A /* libopencv_calib3d.2.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 192901261456557100CB101A /* libopencv_calib3d.2.3.1.dylib */; };
 		192901341456557100CB101A /* libopencv_contrib.2.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 192901271456557100CB101A /* libopencv_contrib.2.3.1.dylib */; };
@@ -26,6 +25,7 @@
 		198E6AF21465E43200C81D3E /* GetDirectoryFiles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 198E6AF11465E43200C81D3E /* GetDirectoryFiles.cpp */; };
 		198E6AF41465F01600C81D3E /* FaceRec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 198E6AF31465F01600C81D3E /* FaceRec.cpp */; };
 		198E6AF61465F98400C81D3E /* PreProcess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 198E6AF51465F98400C81D3E /* PreProcess.cpp */; };
+		397633CC146753E500CB085B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397633CB146753E500CB085B /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,7 +43,6 @@
 
 /* Begin PBXFileReference section */
 		19290118145654CB00CB101A /* OpenCVTestApp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenCVTestApp; sourceTree = BUILT_PRODUCTS_DIR; };
-		1929011C145654CB00CB101A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/main.cpp; sourceTree = "<absolute>"; };
 		1929011E145654CB00CB101A /* OpenCVTestApp.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = OpenCVTestApp.1; sourceTree = "<group>"; };
 		192901261456557100CB101A /* libopencv_calib3d.2.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_calib3d.2.3.1.dylib; path = ../../../../../../usr/local/lib/libopencv_calib3d.2.3.1.dylib; sourceTree = "<group>"; };
 		192901271456557100CB101A /* libopencv_contrib.2.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_contrib.2.3.1.dylib; path = ../../../../../../usr/local/lib/libopencv_contrib.2.3.1.dylib; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		198E6AF51465F98400C81D3E /* PreProcess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PreProcess.cpp; sourceTree = "<group>"; };
 		19D5ACCC145C7FEA001CF1D2 /* PreProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreProcess.h; sourceTree = "<group>"; };
 		19D5ACD8145DDB09001CF1D2 /* FaceRec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceRec.h; sourceTree = "<group>"; };
+		397633CB146753E500CB085B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				192901251456553A00CB101A /* OpenCV Framework */,
-				1929011C145654CB00CB101A /* main.cpp */,
+				397633CB146753E500CB085B /* main.cpp */,
 				193F747B1460C50D000F96C3 /* FaceDetect.h */,
 				198E6AEE1465DD1F00C81D3E /* FaceDetect.cpp */,
 				193F747D1460CF9C000F96C3 /* GetDirectoryFiles.h */,
@@ -196,11 +196,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1929011D145654CB00CB101A /* main.cpp in Sources */,
 				198E6AEF1465DD1F00C81D3E /* FaceDetect.cpp in Sources */,
 				198E6AF21465E43200C81D3E /* GetDirectoryFiles.cpp in Sources */,
 				198E6AF41465F01600C81D3E /* FaceRec.cpp in Sources */,
 				198E6AF61465F98400C81D3E /* PreProcess.cpp in Sources */,
+				397633CC146753E500CB085B /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

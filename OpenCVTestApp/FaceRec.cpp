@@ -131,7 +131,7 @@ int loadTrainingData(CvMat ** pTrainPersonNumMat)
     int i;
     
     // create a file-storage interface
-    fileStorage = cvOpenFileStorage( "/Users/sachi/Downloads/haarcascades/facedata.xml", 0, CV_STORAGE_READ );
+    fileStorage = cvOpenFileStorage( "/Users/Tilo/DesignProj/pictures/facedata.xml", 0, CV_STORAGE_READ );
     if( !fileStorage ) {
         printf("Can't open training database file 'facedata.xml'.\n");
         return 0;
@@ -191,7 +191,7 @@ void storeTrainingData()
     int i;
     
     // create a file-storage interface
-    fileStorage = cvOpenFileStorage( "/Users/sachi/Downloads/haarcascades/facedata.xml", 0, CV_STORAGE_WRITE );
+    fileStorage = cvOpenFileStorage( "/Users/Tilo/DesignProj/pictures/facedata.xml", 0, CV_STORAGE_WRITE );
     
     // Store the person names. Added by Shervin.
     cvWriteInt( fileStorage, "nPersons", nPersons );

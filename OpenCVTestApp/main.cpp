@@ -29,8 +29,8 @@
 using namespace std;
 
 //File Strings
-char trainfilelocation[256] = "/Users/sachi/Downloads/haarcascades/train.txt";
-char testfilelocation[256] = "/Users/sachi/Downloads/haarcascades/test.txt";
+char trainfilelocation[256] = "/Users/Tilo/DesignProj/pictures/train.txt";
+char testfilelocation[256] = "/Users/Tilo/DesignProj/pictures/test.txt";
 string response;
 int option;
 // Haar Cascade file, used for Face Detection
