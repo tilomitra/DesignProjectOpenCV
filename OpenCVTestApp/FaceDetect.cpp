@@ -96,7 +96,7 @@ int FaceDetect()
                 //cvRectangle(image, pt1, pt2, CV_RGB(0,255,0), 2, 4, 0);
                 //IplImage * imgcpy = cvCloneImage(image);
                 //cvRectangle(imgcpy, pt1, pt2, CV_RGB(0,255,0), 3, 4, 0);
-                cvSetImageROI(image,cvRect(r->x, r->y, r->width,r->height)); //selecting the region of interest from the image i.e. the rectangle containing the face
+                cvSetImageROI(image,cvRect(r->x+10, r->y+20, r->width-10,r->height-10)); //selecting the region of interest from the image i.e. the rectangle containing the face
                 faceimage = cvCreateImage(cvGetSize(image),image->depth, image->nChannels);//creating an image of same size and dimensions of the region of interest
                 
                 cvCopy(image,faceimage,NULL);
@@ -105,10 +105,14 @@ int FaceDetect()
                 
                 equalizedface = Equalize(faceimage);
                 
+                IplImage * mirrorimage = Equalize(faceimage);
                 
                 sprintf(facename,"%s%s%s%d%s", folderlocation,foldername,"/face/",i, fileline[a].c_str());
+              
+                cvFlip(equalizedface,mirrorimage,-1);
+                cvSaveImage(facename,mirrorimage); 
+                //cvSaveImage(facename,equalizedface);
                 
-                cvSaveImage(facename,equalizedface); 
                 
                 
                 //printf("%d",i);

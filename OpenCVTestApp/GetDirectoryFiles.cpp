@@ -17,7 +17,7 @@ void GetDirectoryFiles(char * folder)
     char *material,code;
     char directory[]="/Users/sachi/Downloads/haarcascades/";
     char file[25];//not used - redundant?
-    char str[50]; //maybe make this larger
+    char str[1000]; //maybe make this larger
     string array[100];
     struct dirent *dp;
     string line ;
