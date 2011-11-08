@@ -32,15 +32,16 @@ CvMat * eigenValMat           = 0; // eigenvalues
 CvMat * projectedTrainFaceMat = 0; // projected training faces
 
 CvCapture* camera = 0;	// The camera device.
-
-
+char out_averageImage[255] = "/Users/sachi/Downloads/haarcascades/out_averageImage.bmp";
+char out_eigenFaces[255] = "/Users/sachi/Downloads/haarcascades/out_eigenfaces.bmp";
+char facedata[255] = "/Users/sachi/Downloads/haarcascades/facedata.xml";
 
 // Save all the eigenvectors as images, so that they can be checked.
 void storeEigenfaceImages()
 {
     // Store the average image to a file
     printf("Saving the image of the average face as 'out_averageImage.bmp'.\n");
-    cvSaveImage("out_averageImage.bmp", pAvgTrainImg);
+    cvSaveImage(out_averageImage, pAvgTrainImg);
     // Create a large image made of many eigenface images.
     // Must also convert each eigenface image to a normal 8-bit UCHAR image instead of a 32-bit float image.
     printf("Saving the %d eigenvector images as 'out_eigenfaces.bmp'\n", nEigens);
@@ -70,7 +71,7 @@ void storeEigenfaceImages()
             cvReleaseImage(&byteImg); 
         }
         
-        cvSaveImage("out_eigenfaces.bmp", bigImg);
+        cvSaveImage(out_eigenFaces, bigImg);
         cvReleaseImage(&bigImg);
     }
 }
@@ -131,7 +132,7 @@ int loadTrainingData(CvMat ** pTrainPersonNumMat)
     int i;
     
     // create a file-storage interface
-    fileStorage = cvOpenFileStorage( "/Users/sachi/Downloads/haarcascades/facedata.xml", 0, CV_STORAGE_READ );
+    fileStorage = cvOpenFileStorage( facedata, 0, CV_STORAGE_READ );
     if( !fileStorage ) {
         printf("Can't open training database file 'facedata.xml'.\n");
         return 0;
@@ -191,7 +192,7 @@ void storeTrainingData()
     int i;
     
     // create a file-storage interface
-    fileStorage = cvOpenFileStorage( "/Users/sachi/Downloads/haarcascades/facedata.xml", 0, CV_STORAGE_WRITE );
+    fileStorage = cvOpenFileStorage( facedata, 0, CV_STORAGE_WRITE );
     
     // Store the person names. Added by Shervin.
     cvWriteInt( fileStorage, "nPersons", nPersons );
@@ -228,7 +229,7 @@ int findNearestNeighbor(float * projectedTestFace, float *pConfidence)
     
     for(iTrain=0; iTrain<nTrainFaces; iTrain++)
     {
-        double distSq=0;
+        double distSq = 0;
         
         for(i=0; i<nEigens; i++)
         {
@@ -237,7 +238,9 @@ int findNearestNeighbor(float * projectedTestFace, float *pConfidence)
 #ifdef USE_MAHALANOBIS_DISTANCE
             distSq += d_i*d_i / eigenValMat->data.fl[i];  // Mahalanobis distance (might give better results than Eucalidean distance)
 #else
-            if (d_i == d_i) {  //this is a nan check
+            if (d_i == d_i) 
+            {  //this is a nan check
+                
                 distSq += d_i*d_i; // Euclidean distance.
             }
 #endif
@@ -248,13 +251,17 @@ int findNearestNeighbor(float * projectedTestFace, float *pConfidence)
             leastDistSq = distSq;
             iNearest = iTrain;
         }
+        
+        
     }
     
     // Return the confidence level based on the Euclidean distance,
     // so that similar images should give a confidence between 0.5 to 1.0,
     // and very different images should give a confidence between 0.0 to 0.5.
-    *pConfidence = 1.0f - sqrt( leastDistSq / (float)(nTrainFaces * nEigens) ) / 255.0f;
     
+    *pConfidence = leastDistSq;
+    //1.0f - sqrt( leastDistSq / (float)(nTrainFaces * nEigens) ) / 255.0f;
+    // printf("%f \n",*pConfidence);
     // Return the found index.
     return iNearest;
 }
@@ -415,7 +422,14 @@ void recognizeFileList(char *szFileTest)
         
         iNearest = findNearestNeighbor(projectedTestFace, &confidence);
         truth    = personNumTruthMat->data.i[i];
-        nearest  = trainPersonNumMat->data.i[iNearest];
+        if(iNearest!=-1)
+        {
+            nearest  = trainPersonNumMat->data.i[iNearest];
+        }
+        else
+        {
+            nearest = 0;
+        }
         
         if (nearest == truth) {
             answer = "Correct";

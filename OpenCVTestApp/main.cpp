@@ -20,8 +20,6 @@
 #include <opencv/cvaux.h>
 #include "FaceRec.h"
 #include "FaceDetect.h"
-//#include "GetDirectoryFiles.h"
-
 #include <string.h>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -31,38 +29,33 @@ using namespace std;
 //File Strings
 char trainfilelocation[256] = "/Users/sachi/Downloads/haarcascades/train.txt";
 char testfilelocation[256] = "/Users/sachi/Downloads/haarcascades/test.txt";
+
+//User Inputs
 string response;
 int option;
-// Haar Cascade file, used for Face Detection
 
-
- int main()
+int main()
 {
     do
     {
-        cout<<"Please enter an option"<<endl<<"1 - Face Detection"<<endl<<"2 - Face Rec"<<endl;
+        cout<<"Please enter an option"<<endl<<"1 - Training"<<endl<<"2 - Recognition"<<endl<<"3 - Exit"<<endl;
         cin >> option;
-    switch(option)
+        switch(option)
         {
-        case 1:
-            FaceDetect();
-        case 2:
-            learn(trainfilelocation);
-            recognizeFileList(testfilelocation);
+            case 1:
+                FaceDetect();
+                break;
+            case 2:
+                learn(trainfilelocation);
+                recognizeFileList(testfilelocation);
+                break;
+            case 3:
+                exit(0);
         }
-        
-  //  FaceDetect();
-  //  GetDirectoryFiles("sjobs");
-    
-  // learn(trainfilelocation);
-  //  recognizeFileList(testfilelocation);
-     
-    return 0;
-    cout << "Do you want to continue? [y/n]" << endl;
-    cin >> response;
+
+        cout<<"Do you want to continue? (y/n)"<<endl;
+        cin >> response;
         
     }while(response.compare("y") == 0);
-
-  
-   
+    
 } 

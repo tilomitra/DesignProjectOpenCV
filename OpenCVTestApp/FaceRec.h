@@ -33,7 +33,7 @@ void storeEigenfaceImages();// Save all the eigenvectors as images, so that they
 void learn(char *szFileTrain);// Train from the data in the given text file, and store the trained data into the file 'facedata.xml'
 int  loadTrainingData(CvMat ** pTrainPersonNumMat);// Open the training data from the file 'facedata.xml'.
 void storeTrainingData();// Save the training data to the file 'facedata.xml'.
-int findNearestNeighbor(float * projectedTestFace, float *pConfidence);// Find the most likely person based on a detection. Returns the index, and stores the confidence value into pConfidence.
+int findNearestNeighbor(float * projectedTestFace, float *pConfidence, int iTrain);// Find the most likely person based on a detection. Returns the index, and stores the confidence value into pConfidence.
 void doPCA();/// Do the Principal Component Analysis, finding the average image and the eigenfaces that represent any image in the given dataset.
 int  loadFaceImgArray(char * filename);// Read the names & image filenames of people from a text file, and load all those images listed.
 void recognizeFileList(char *szFileTest);// Recognize the face in each of the test images given, and compare the results with the truth.
