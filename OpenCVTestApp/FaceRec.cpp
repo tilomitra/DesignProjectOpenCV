@@ -53,6 +53,10 @@ void storeEigenfaceImages()
         int nRows = 1 + (nEigens / COLUMNS);	// Put the rest on new rows.
         int w = eigenVectArr[0]->width;
         int h = eigenVectArr[0]->height;
+        
+        
+        
+        
         CvSize size;
         size = cvSize(nCols * w, nRows * h);
         IplImage *bigImg = cvCreateImage(size, IPL_DEPTH_8U, 1);	// 8-bit Greyscale UCHAR image
