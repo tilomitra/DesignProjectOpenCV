@@ -19,5 +19,4 @@ using namespace std;
 
 void GetDirectoryFiles(char * folder);
 
-
 #endif

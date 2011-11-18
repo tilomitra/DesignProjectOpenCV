@@ -17,20 +17,18 @@ int FaceDetect()
     CvMemStorage * pStorage = 0;        // expandable memory buffer
     CvSeq * pFaceRectSeq;               // list of detected faces
     int i;
-    int j = 1;
+    
     string response;
     //  ofstream file;
     //File Strings
     char foldername[256];
     char folderlocation[256] = "/Users/sachi/Downloads/haarcascades/";
     char imagelocation[256];
-    char imagename[256];
-    char facepath[256];
+    char imagename[256];    
     char facename[256];
     char haarcascadelocation[256] = "/Users/sachi/Downloads/haarcascades/haarcascade_frontalface_alt.xml";
     char myfile[256] = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/myfile.txt";
-    string array[25];
-    char user;
+
     // initializations
     IplImage * image = 0;
     IplImage * faceimage = 0;
@@ -83,20 +81,12 @@ int FaceDetect()
              CV_HAAR_DO_CANNY_PRUNING,  // skip regions unlikely to contain a face
              cvSize(0,0));              // use XML default for smallest search scale
             
-            // create a window to display detected faces
-            //cvNamedWindow("Haar Window", CV_WINDOW_AUTOSIZE);
-            
             // draw a rectangular outline around each detection
             for(i=0;i<(pFaceRectSeq? pFaceRectSeq->total:10); i++ )
             {
                 
                 CvRect * r = (CvRect*)cvGetSeqElem(pFaceRectSeq, i);
-                //CvPoint pt1 = { r->x, r->y };
-                //CvPoint pt2 = { r->x + r->width, r->y + r->height };
-                //cvRectangle(image, pt1, pt2, CV_RGB(0,255,0), 2, 4, 0);
-                //IplImage * imgcpy = cvCloneImage(image);
-                //cvRectangle(imgcpy, pt1, pt2, CV_RGB(0,255,0), 3, 4, 0);
-                cvSetImageROI(image,cvRect(r->x+10, r->y+20, r->width-10,r->height-10)); //selecting the region of interest from the image i.e. the rectangle containing the face
+                cvSetImageROI(image,cvRect(r->x+20, r->y+40, r->width,r->height)); //selecting the region of interest from the image i.e. the rectangle containing the face
                 faceimage = cvCreateImage(cvGetSize(image),image->depth, image->nChannels);//creating an image of same size and dimensions of the region of interest
                 
                 cvCopy(image,faceimage,NULL);
@@ -110,20 +100,9 @@ int FaceDetect()
                 sprintf(facename,"%s%s%s%d%s", folderlocation,foldername,"/face/",i, fileline[a].c_str());
               
                 cvFlip(equalizedface,mirrorimage,-1);
-                cvSaveImage(facename,mirrorimage); 
-                //cvSaveImage(facename,equalizedface);
-                
-                
-                
-                //printf("%d",i);
-                
-                
+                cvSaveImage(facename,equalizedface);
+
             }
-            
-            // display face detections
-            //cvShowImage("Haar Window", image);
-            //cvWaitKey(0);
-            //cvDestroyWindow("Haar Window");
             
             a++;
             

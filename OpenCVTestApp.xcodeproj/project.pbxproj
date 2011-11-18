@@ -26,6 +26,17 @@
 		198E6AF21465E43200C81D3E /* GetDirectoryFiles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 198E6AF11465E43200C81D3E /* GetDirectoryFiles.cpp */; };
 		198E6AF41465F01600C81D3E /* FaceRec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 198E6AF31465F01600C81D3E /* FaceRec.cpp */; };
 		198E6AF61465F98400C81D3E /* PreProcess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 198E6AF51465F98400C81D3E /* PreProcess.cpp */; };
+		19C4E3C0146F84A800C425A6 /* csuCommonCommandLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3B4146F84A700C425A6 /* csuCommonCommandLine.cpp */; };
+		19C4E3C1146F84A800C425A6 /* csuCommonFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3B6146F84A700C425A6 /* csuCommonFile.cpp */; };
+		19C4E3C2146F84A800C425A6 /* csuCommonImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3B8146F84A700C425A6 /* csuCommonImage.cpp */; };
+		19C4E3C3146F84A800C425A6 /* csuCommonMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3BA146F84A800C425A6 /* csuCommonMatrix.cpp */; };
+		19C4E3C4146F84A800C425A6 /* csuCommonSubspace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3BC146F84A800C425A6 /* csuCommonSubspace.cpp */; };
+		19C4E3C5146F84A800C425A6 /* csuCommonUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3BE146F84A800C425A6 /* csuCommonUtil.cpp */; };
+		19C4E3C8146F878900C425A6 /* csuSubspaceEigen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3C6146F878900C425A6 /* csuSubspaceEigen.cpp */; };
+		19C4E3C9146F878900C425A6 /* csuSubspaceFisher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3C7146F878900C425A6 /* csuSubspaceFisher.cpp */; };
+		19C4E3CB146F87F300C425A6 /* csuSubspaceCVEigen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3CA146F87F300C425A6 /* csuSubspaceCVEigen.cpp */; };
+		19C4E3CD146F88DE00C425A6 /* csuBayesianTrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3CC146F88DE00C425A6 /* csuBayesianTrain.cpp */; };
+		19C4E3CF146F893B00C425A6 /* csuBayesianProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3CE146F893B00C425A6 /* csuBayesianProject.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +75,24 @@
 		198E6AF11465E43200C81D3E /* GetDirectoryFiles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GetDirectoryFiles.cpp; sourceTree = "<group>"; };
 		198E6AF31465F01600C81D3E /* FaceRec.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FaceRec.cpp; sourceTree = "<group>"; };
 		198E6AF51465F98400C81D3E /* PreProcess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PreProcess.cpp; sourceTree = "<group>"; };
+		19C4E3B3146F84A700C425A6 /* csuCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuCommon.h; sourceTree = "<group>"; };
+		19C4E3B4146F84A700C425A6 /* csuCommonCommandLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuCommonCommandLine.cpp; sourceTree = "<group>"; };
+		19C4E3B5146F84A700C425A6 /* csuCommonCommandLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuCommonCommandLine.h; sourceTree = "<group>"; };
+		19C4E3B6146F84A700C425A6 /* csuCommonFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuCommonFile.cpp; sourceTree = "<group>"; };
+		19C4E3B7146F84A700C425A6 /* csuCommonFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuCommonFile.h; sourceTree = "<group>"; };
+		19C4E3B8146F84A700C425A6 /* csuCommonImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuCommonImage.cpp; sourceTree = "<group>"; };
+		19C4E3B9146F84A800C425A6 /* csuCommonImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuCommonImage.h; sourceTree = "<group>"; };
+		19C4E3BA146F84A800C425A6 /* csuCommonMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuCommonMatrix.cpp; sourceTree = "<group>"; };
+		19C4E3BB146F84A800C425A6 /* csuCommonMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuCommonMatrix.h; sourceTree = "<group>"; };
+		19C4E3BC146F84A800C425A6 /* csuCommonSubspace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuCommonSubspace.cpp; sourceTree = "<group>"; };
+		19C4E3BD146F84A800C425A6 /* csuCommonSubspace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuCommonSubspace.h; sourceTree = "<group>"; };
+		19C4E3BE146F84A800C425A6 /* csuCommonUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuCommonUtil.cpp; sourceTree = "<group>"; };
+		19C4E3BF146F84A800C425A6 /* csuCommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuCommonUtil.h; sourceTree = "<group>"; };
+		19C4E3C6146F878900C425A6 /* csuSubspaceEigen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuSubspaceEigen.cpp; sourceTree = "<group>"; };
+		19C4E3C7146F878900C425A6 /* csuSubspaceFisher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuSubspaceFisher.cpp; sourceTree = "<group>"; };
+		19C4E3CA146F87F300C425A6 /* csuSubspaceCVEigen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuSubspaceCVEigen.cpp; sourceTree = "<group>"; };
+		19C4E3CC146F88DE00C425A6 /* csuBayesianTrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuBayesianTrain.cpp; sourceTree = "<group>"; };
+		19C4E3CE146F893B00C425A6 /* csuBayesianProject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuBayesianProject.cpp; sourceTree = "<group>"; };
 		19D5ACCC145C7FEA001CF1D2 /* PreProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreProcess.h; sourceTree = "<group>"; };
 		19D5ACD8145DDB09001CF1D2 /* FaceRec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceRec.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +143,24 @@
 				192901251456553A00CB101A /* OpenCV Framework */,
 				1929011C145654CB00CB101A /* main.cpp */,
 				193F747B1460C50D000F96C3 /* FaceDetect.h */,
+				19C4E3C6146F878900C425A6 /* csuSubspaceEigen.cpp */,
+				19C4E3C7146F878900C425A6 /* csuSubspaceFisher.cpp */,
+				19C4E3CA146F87F300C425A6 /* csuSubspaceCVEigen.cpp */,
+				19C4E3B3146F84A700C425A6 /* csuCommon.h */,
+				19C4E3B4146F84A700C425A6 /* csuCommonCommandLine.cpp */,
+				19C4E3CC146F88DE00C425A6 /* csuBayesianTrain.cpp */,
+				19C4E3B5146F84A700C425A6 /* csuCommonCommandLine.h */,
+				19C4E3B6146F84A700C425A6 /* csuCommonFile.cpp */,
+				19C4E3B7146F84A700C425A6 /* csuCommonFile.h */,
+				19C4E3B8146F84A700C425A6 /* csuCommonImage.cpp */,
+				19C4E3CE146F893B00C425A6 /* csuBayesianProject.cpp */,
+				19C4E3B9146F84A800C425A6 /* csuCommonImage.h */,
+				19C4E3BA146F84A800C425A6 /* csuCommonMatrix.cpp */,
+				19C4E3BB146F84A800C425A6 /* csuCommonMatrix.h */,
+				19C4E3BC146F84A800C425A6 /* csuCommonSubspace.cpp */,
+				19C4E3BD146F84A800C425A6 /* csuCommonSubspace.h */,
+				19C4E3BE146F84A800C425A6 /* csuCommonUtil.cpp */,
+				19C4E3BF146F84A800C425A6 /* csuCommonUtil.h */,
 				198E6AEE1465DD1F00C81D3E /* FaceDetect.cpp */,
 				193F747D1460CF9C000F96C3 /* GetDirectoryFiles.h */,
 				198E6AF11465E43200C81D3E /* GetDirectoryFiles.cpp */,
@@ -201,6 +248,17 @@
 				198E6AF21465E43200C81D3E /* GetDirectoryFiles.cpp in Sources */,
 				198E6AF41465F01600C81D3E /* FaceRec.cpp in Sources */,
 				198E6AF61465F98400C81D3E /* PreProcess.cpp in Sources */,
+				19C4E3C0146F84A800C425A6 /* csuCommonCommandLine.cpp in Sources */,
+				19C4E3C1146F84A800C425A6 /* csuCommonFile.cpp in Sources */,
+				19C4E3C2146F84A800C425A6 /* csuCommonImage.cpp in Sources */,
+				19C4E3C3146F84A800C425A6 /* csuCommonMatrix.cpp in Sources */,
+				19C4E3C4146F84A800C425A6 /* csuCommonSubspace.cpp in Sources */,
+				19C4E3C5146F84A800C425A6 /* csuCommonUtil.cpp in Sources */,
+				19C4E3C8146F878900C425A6 /* csuSubspaceEigen.cpp in Sources */,
+				19C4E3C9146F878900C425A6 /* csuSubspaceFisher.cpp in Sources */,
+				19C4E3CB146F87F300C425A6 /* csuSubspaceCVEigen.cpp in Sources */,
+				19C4E3CD146F88DE00C425A6 /* csuBayesianTrain.cpp in Sources */,
+				19C4E3CF146F893B00C425A6 /* csuBayesianProject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,7 +287,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					/opt/local/include/boost,
+					/Users/sachi/Downloads/csuFaceIdEval/src,
 					/usr/local/include,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -254,7 +312,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					/opt/local/include/boost,
+					/Users/sachi/Downloads/csuFaceIdEval/src,
 					/usr/local/include,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;

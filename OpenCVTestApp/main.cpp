@@ -20,6 +20,7 @@
 #include <opencv/cvaux.h>
 #include "FaceRec.h"
 #include "FaceDetect.h"
+#include "Bayesian.h"
 #include <string.h>
 #include <dirent.h>
 #include <sys/stat.h>
