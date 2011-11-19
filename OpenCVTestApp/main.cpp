@@ -20,7 +20,10 @@
 #include <opencv/cvaux.h>
 #include "FaceRec.h"
 #include "FaceDetect.h"
-#include "Bayesian.h"
+//#include "csuBayesianTrain.h"
+//#include "csuBayesianProject.h"
+#include "csuSubspaceTrain.h"
+#include "csuSubspaceProject.h"
 #include <string.h>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -34,12 +37,13 @@ char testfilelocation[256] = "/Users/sachi/Downloads/haarcascades/test.txt";
 //User Inputs
 string response;
 int option;
+int argc;
 
-int main()
+int main(int argc,char **argv)
 {
     do
     {
-        cout<<"Please enter an option"<<endl<<"1 - Training"<<endl<<"2 - Recognition"<<endl<<"3 - Exit"<<endl;
+        cout<<"Please enter an option"<<endl<<"1 - Training"<<endl<<"2 - Recognition"<<endl<<"3 - Bayesian"<<endl<<"4 - Exit"<<endl;
         cin >> option;
         switch(option)
         {
@@ -51,6 +55,10 @@ int main()
                 recognizeFileList(testfilelocation);
                 break;
             case 3:
+                lda(argc, argv);
+                //Bayesian(argc, argv);
+                //csuBayesianTrain(argc, argv);
+            case 4:
                 exit(0);
         }
 

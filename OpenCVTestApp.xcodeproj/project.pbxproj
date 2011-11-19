@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19086B66147752C3002C6FB3 /* csuSubspaceTrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19086B65147752C3002C6FB3 /* csuSubspaceTrain.cpp */; };
+		19086B6914775739002C6FB3 /* csuSubspaceProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19086B6814775739002C6FB3 /* csuSubspaceProject.cpp */; };
 		1929011D145654CB00CB101A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1929011C145654CB00CB101A /* main.cpp */; };
 		1929011F145654CB00CB101A /* OpenCVTestApp.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929011E145654CB00CB101A /* OpenCVTestApp.1 */; };
 		192901331456557100CB101A /* libopencv_calib3d.2.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 192901261456557100CB101A /* libopencv_calib3d.2.3.1.dylib */; };
@@ -53,6 +55,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		19086B6314774EFA002C6FB3 /* csuBayesianProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuBayesianProject.h; sourceTree = "<group>"; };
+		19086B65147752C3002C6FB3 /* csuSubspaceTrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuSubspaceTrain.cpp; sourceTree = "<group>"; };
+		19086B6714775320002C6FB3 /* csuSubspaceTrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuSubspaceTrain.h; sourceTree = "<group>"; };
+		19086B6814775739002C6FB3 /* csuSubspaceProject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuSubspaceProject.cpp; sourceTree = "<group>"; };
+		19086B6A147757A9002C6FB3 /* csuSubspaceProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuSubspaceProject.h; sourceTree = "<group>"; };
 		19290118145654CB00CB101A /* OpenCVTestApp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenCVTestApp; sourceTree = BUILT_PRODUCTS_DIR; };
 		1929011C145654CB00CB101A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/main.cpp; sourceTree = "<absolute>"; };
 		1929011E145654CB00CB101A /* OpenCVTestApp.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = OpenCVTestApp.1; sourceTree = "<group>"; };
@@ -95,6 +102,7 @@
 		19C4E3CE146F893B00C425A6 /* csuBayesianProject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuBayesianProject.cpp; sourceTree = "<group>"; };
 		19D5ACCC145C7FEA001CF1D2 /* PreProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreProcess.h; sourceTree = "<group>"; };
 		19D5ACD8145DDB09001CF1D2 /* FaceRec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceRec.h; sourceTree = "<group>"; };
+		19F8BCF81477309E00EFF764 /* csuBayesianTrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuBayesianTrain.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +150,9 @@
 			children = (
 				192901251456553A00CB101A /* OpenCV Framework */,
 				1929011C145654CB00CB101A /* main.cpp */,
+				19086B65147752C3002C6FB3 /* csuSubspaceTrain.cpp */,
+				19086B6714775320002C6FB3 /* csuSubspaceTrain.h */,
+				19F8BCF81477309E00EFF764 /* csuBayesianTrain.h */,
 				193F747B1460C50D000F96C3 /* FaceDetect.h */,
 				19C4E3C6146F878900C425A6 /* csuSubspaceEigen.cpp */,
 				19C4E3C7146F878900C425A6 /* csuSubspaceFisher.cpp */,
@@ -154,6 +165,9 @@
 				19C4E3B7146F84A700C425A6 /* csuCommonFile.h */,
 				19C4E3B8146F84A700C425A6 /* csuCommonImage.cpp */,
 				19C4E3CE146F893B00C425A6 /* csuBayesianProject.cpp */,
+				19086B6814775739002C6FB3 /* csuSubspaceProject.cpp */,
+				19086B6A147757A9002C6FB3 /* csuSubspaceProject.h */,
+				19086B6314774EFA002C6FB3 /* csuBayesianProject.h */,
 				19C4E3B9146F84A800C425A6 /* csuCommonImage.h */,
 				19C4E3BA146F84A800C425A6 /* csuCommonMatrix.cpp */,
 				19C4E3BB146F84A800C425A6 /* csuCommonMatrix.h */,
@@ -259,6 +273,8 @@
 				19C4E3CB146F87F300C425A6 /* csuSubspaceCVEigen.cpp in Sources */,
 				19C4E3CD146F88DE00C425A6 /* csuBayesianTrain.cpp in Sources */,
 				19C4E3CF146F893B00C425A6 /* csuBayesianProject.cpp in Sources */,
+				19086B66147752C3002C6FB3 /* csuSubspaceTrain.cpp in Sources */,
+				19086B6914775739002C6FB3 /* csuSubspaceProject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
