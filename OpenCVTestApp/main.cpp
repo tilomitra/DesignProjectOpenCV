@@ -56,6 +56,7 @@ int main(int argc,char **argv)
                 break;
             case 3:
                 lda(argc, argv);
+                //lda_train(argc, argv);
                 //Bayesian(argc, argv);
                 //csuBayesianTrain(argc, argv);
             case 4:

@@ -1,0 +1,14 @@
+.
+..
+.DS_Store
+face
+sjobs1.jpg
+sjobs10.jpg
+sjobs2.jpg
+sjobs3.jpg
+sjobs4.jpg
+sjobs5.jpg
+sjobs6.jpg
+sjobs7.jpg
+sjobs8.jpg
+sjobs9.jpg

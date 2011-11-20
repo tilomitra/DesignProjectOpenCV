@@ -158,14 +158,14 @@ void ldaprocess_command(int argc, char** argv, Arguments* args) {
 
   /* Print out the program parameters for appropriate debug level */
 
-  DEBUG_INT (1, "Debuging enabled", debuglevel);
+/*  DEBUG_INT (1, "Debuging enabled", debuglevel);
 
   if (debuglevel > 0)
-    {
+    {*/
       printf ("***************** Program Parameters *********************\n");
       printf ("imageNamesFile: %s\n", args->imageNamesFile);
       printf ("imageDirectory: %s\n", args->imageDirectory);
-    }
+   // }
 }
 
 /* ===========================================================================

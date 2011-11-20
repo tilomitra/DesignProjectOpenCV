@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "GetDirectoryFiles(char*):GetDirectoryFiles.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "directory">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "findNearestNeighbor(float*, float*):FaceRec.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "nEigens">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "main:main.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "(char [256])(null)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "recognizeFileList(char*):FaceRec.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "distSq">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FaceDetect(int, char**):FaceDetect.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "array[4]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
