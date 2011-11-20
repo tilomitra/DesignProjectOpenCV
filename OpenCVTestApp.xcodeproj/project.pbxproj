@@ -150,31 +150,8 @@
 			children = (
 				192901251456553A00CB101A /* OpenCV Framework */,
 				1929011C145654CB00CB101A /* main.cpp */,
-				19086B65147752C3002C6FB3 /* csuSubspaceTrain.cpp */,
-				19086B6714775320002C6FB3 /* csuSubspaceTrain.h */,
-				19F8BCF81477309E00EFF764 /* csuBayesianTrain.h */,
 				193F747B1460C50D000F96C3 /* FaceDetect.h */,
-				19C4E3C6146F878900C425A6 /* csuSubspaceEigen.cpp */,
-				19C4E3C7146F878900C425A6 /* csuSubspaceFisher.cpp */,
-				19C4E3CA146F87F300C425A6 /* csuSubspaceCVEigen.cpp */,
-				19C4E3B3146F84A700C425A6 /* csuCommon.h */,
-				19C4E3B4146F84A700C425A6 /* csuCommonCommandLine.cpp */,
-				19C4E3CC146F88DE00C425A6 /* csuBayesianTrain.cpp */,
-				19C4E3B5146F84A700C425A6 /* csuCommonCommandLine.h */,
-				19C4E3B6146F84A700C425A6 /* csuCommonFile.cpp */,
-				19C4E3B7146F84A700C425A6 /* csuCommonFile.h */,
-				19C4E3B8146F84A700C425A6 /* csuCommonImage.cpp */,
-				19C4E3CE146F893B00C425A6 /* csuBayesianProject.cpp */,
-				19086B6814775739002C6FB3 /* csuSubspaceProject.cpp */,
-				19086B6A147757A9002C6FB3 /* csuSubspaceProject.h */,
-				19086B6314774EFA002C6FB3 /* csuBayesianProject.h */,
-				19C4E3B9146F84A800C425A6 /* csuCommonImage.h */,
-				19C4E3BA146F84A800C425A6 /* csuCommonMatrix.cpp */,
-				19C4E3BB146F84A800C425A6 /* csuCommonMatrix.h */,
-				19C4E3BC146F84A800C425A6 /* csuCommonSubspace.cpp */,
-				19C4E3BD146F84A800C425A6 /* csuCommonSubspace.h */,
-				19C4E3BE146F84A800C425A6 /* csuCommonUtil.cpp */,
-				19C4E3BF146F84A800C425A6 /* csuCommonUtil.h */,
+				19D96D251478AD0100601D53 /* LDA */,
 				198E6AEE1465DD1F00C81D3E /* FaceDetect.cpp */,
 				193F747D1460CF9C000F96C3 /* GetDirectoryFiles.h */,
 				198E6AF11465E43200C81D3E /* GetDirectoryFiles.cpp */,
@@ -205,6 +182,37 @@
 				192901321456557100CB101A /* libopencv_video.2.3.1.dylib */,
 			);
 			name = "OpenCV Framework";
+			sourceTree = "<group>";
+		};
+		19D96D251478AD0100601D53 /* LDA */ = {
+			isa = PBXGroup;
+			children = (
+				19F8BCF81477309E00EFF764 /* csuBayesianTrain.h */,
+				19C4E3CC146F88DE00C425A6 /* csuBayesianTrain.cpp */,
+				19086B65147752C3002C6FB3 /* csuSubspaceTrain.cpp */,
+				19086B6714775320002C6FB3 /* csuSubspaceTrain.h */,
+				19C4E3C6146F878900C425A6 /* csuSubspaceEigen.cpp */,
+				19C4E3C7146F878900C425A6 /* csuSubspaceFisher.cpp */,
+				19C4E3CA146F87F300C425A6 /* csuSubspaceCVEigen.cpp */,
+				19C4E3B3146F84A700C425A6 /* csuCommon.h */,
+				19C4E3B4146F84A700C425A6 /* csuCommonCommandLine.cpp */,
+				19C4E3B5146F84A700C425A6 /* csuCommonCommandLine.h */,
+				19C4E3B6146F84A700C425A6 /* csuCommonFile.cpp */,
+				19C4E3B7146F84A700C425A6 /* csuCommonFile.h */,
+				19C4E3B8146F84A700C425A6 /* csuCommonImage.cpp */,
+				19C4E3CE146F893B00C425A6 /* csuBayesianProject.cpp */,
+				19086B6814775739002C6FB3 /* csuSubspaceProject.cpp */,
+				19086B6A147757A9002C6FB3 /* csuSubspaceProject.h */,
+				19086B6314774EFA002C6FB3 /* csuBayesianProject.h */,
+				19C4E3B9146F84A800C425A6 /* csuCommonImage.h */,
+				19C4E3BA146F84A800C425A6 /* csuCommonMatrix.cpp */,
+				19C4E3BB146F84A800C425A6 /* csuCommonMatrix.h */,
+				19C4E3BC146F84A800C425A6 /* csuCommonSubspace.cpp */,
+				19C4E3BD146F84A800C425A6 /* csuCommonSubspace.h */,
+				19C4E3BE146F84A800C425A6 /* csuCommonUtil.cpp */,
+				19C4E3BF146F84A800C425A6 /* csuCommonUtil.h */,
+			);
+			name = LDA;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
