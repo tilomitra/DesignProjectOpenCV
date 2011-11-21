@@ -195,8 +195,8 @@ Image readPGMImage(const char* filename){
     FILE *infile;
     Image im;
 
-    /* Read first line, and test if it is propoer PNM type */
-
+    /* Read first line, and test if it is propoer PGM type */
+    printf(filename);
     infile = (FILE*) fopen(filename, "rb");
     assert(infile);
 
@@ -434,7 +434,7 @@ void writeRawImage(const Image im, const char *fname){
             for(c=0;c<im->channels;c++){
                 /* read in the correct byte order for floating point values */
                 junk.f = IE(im,i,j,c);
-
+                //printf("junking %d", c);
 #ifdef RANGE_CHECK
                 /* Check values to make sure they are real */
                 if(isnan( junk.f)){
@@ -524,7 +524,7 @@ void writeFeretImage(const Image im, const char *fname){
     if ( !f ) { printf("Can't open %s\n", fname); exit(1); }
 
     for(j=0;j<im->height;j++){
-        for(i=0;i<im->width;i++){
+        for(i=0;i<im->width ;i++){
             for(c=0;c<im->channels;c++){
                 /* read in the correct byte order for floating point values */
                 junk.f = IE(im,i,j,c);

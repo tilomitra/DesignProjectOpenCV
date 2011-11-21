@@ -24,6 +24,7 @@
 //#include "csuBayesianProject.h"
 #include "csuSubspaceTrain.h"
 #include "csuSubspaceProject.h"
+#include "csuPreprocessNormalize.h"
 #include <string.h>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -43,7 +44,7 @@ int main(int argc,char **argv)
 {
     do
     {
-        cout<<"Please enter an option"<<endl<<"1 - Training"<<endl<<"2 - Recognition"<<endl<<"3 - Bayesian"<<endl<<"4 - Exit"<<endl;
+        cout<<"Please enter an option"<<endl<<"1 - Training"<<endl<<"2 - Recognition"<<endl<<"3 - LDA Testing"<<endl<<"4 - Preprocess"<<endl<<"5 - LDA Training"<<endl<<"6 - exit"<<endl;
         cin >> option;
         switch(option)
         {
@@ -56,11 +57,16 @@ int main(int argc,char **argv)
                 break;
             case 3:
                 lda(argc, argv);
-                //lda_train(argc, argv);
-                //Bayesian(argc, argv);
-                //csuBayesianTrain(argc, argv);
+                break;
             case 4:
+                PreProcessNormalize(argc, argv);
+                break;
+            case 5:    
+                lda_train(argc, argv);
+                break;
+            case 6:
                 exit(0);
+                
         }
 
         cout<<"Do you want to continue? (y/n)"<<endl;

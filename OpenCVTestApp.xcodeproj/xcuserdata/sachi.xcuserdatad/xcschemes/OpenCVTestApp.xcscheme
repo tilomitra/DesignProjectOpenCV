@@ -57,16 +57,16 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-lda -imDir /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002sfi /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all.srt /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train/scraps/feretLDA.train"
+            argument = "-lda -imDir /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002sfi /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all.srt /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train/scraps/LDATrain.txt"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-imDir /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002sfi /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train/scraps/feretLDA.train /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all_x4.srt /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/distances/scraps/LDA_ldaSoft ldaSoft"
+            argument = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/coords.scraps /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/source/pgm -sfi  /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002sfi -nrm /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002nrm -pgm /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002pgm"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-imDir /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002sfi /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train/scraps/LDATrain.txt /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all_x4.srt /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/distances/scraps/LDA_ldaSoft ldaSoft"
             isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-imDir /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002sfi /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train/scraps/Bayesian/bayesian.intra /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train/scraps/Bayesian/bayesian.extra /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all_x4.srt /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/distances/scraps/Bayesian_ML /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/distances/scraps/Bayesian_MAP"
-            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

@@ -58,7 +58,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 #define FILE_LINE_LENGTH 512
 
 /* Max length of a filename */
-#define MAX_FILENAME_LENGTH 2048
+#define MAX_FILENAME_LENGTH 5048
 
 /******************************************************************************
 *                           NUMERICAL MACROS                                  *

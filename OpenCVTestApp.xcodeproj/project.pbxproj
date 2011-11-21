@@ -39,6 +39,7 @@
 		19C4E3CB146F87F300C425A6 /* csuSubspaceCVEigen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3CA146F87F300C425A6 /* csuSubspaceCVEigen.cpp */; };
 		19C4E3CD146F88DE00C425A6 /* csuBayesianTrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3CC146F88DE00C425A6 /* csuBayesianTrain.cpp */; };
 		19C4E3CF146F893B00C425A6 /* csuBayesianProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3CE146F893B00C425A6 /* csuBayesianProject.cpp */; };
+		19D691971479C72F009B282C /* csuPreprocessNormalize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19D691961479C72F009B282C /* csuPreprocessNormalize.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -102,6 +103,8 @@
 		19C4E3CE146F893B00C425A6 /* csuBayesianProject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuBayesianProject.cpp; sourceTree = "<group>"; };
 		19D5ACCC145C7FEA001CF1D2 /* PreProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreProcess.h; sourceTree = "<group>"; };
 		19D5ACD8145DDB09001CF1D2 /* FaceRec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceRec.h; sourceTree = "<group>"; };
+		19D691961479C72F009B282C /* csuPreprocessNormalize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuPreprocessNormalize.cpp; sourceTree = "<group>"; };
+		19D691991479C8D6009B282C /* csuPreprocessNormalize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuPreprocessNormalize.h; sourceTree = "<group>"; };
 		19F8BCF81477309E00EFF764 /* csuBayesianTrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuBayesianTrain.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,9 +152,9 @@
 			isa = PBXGroup;
 			children = (
 				192901251456553A00CB101A /* OpenCV Framework */,
+				19D96D251478AD0100601D53 /* LDA */,
 				1929011C145654CB00CB101A /* main.cpp */,
 				193F747B1460C50D000F96C3 /* FaceDetect.h */,
-				19D96D251478AD0100601D53 /* LDA */,
 				198E6AEE1465DD1F00C81D3E /* FaceDetect.cpp */,
 				193F747D1460CF9C000F96C3 /* GetDirectoryFiles.h */,
 				198E6AF11465E43200C81D3E /* GetDirectoryFiles.cpp */,
@@ -187,6 +190,8 @@
 		19D96D251478AD0100601D53 /* LDA */ = {
 			isa = PBXGroup;
 			children = (
+				19D691961479C72F009B282C /* csuPreprocessNormalize.cpp */,
+				19D691991479C8D6009B282C /* csuPreprocessNormalize.h */,
 				19F8BCF81477309E00EFF764 /* csuBayesianTrain.h */,
 				19C4E3CC146F88DE00C425A6 /* csuBayesianTrain.cpp */,
 				19086B65147752C3002C6FB3 /* csuSubspaceTrain.cpp */,
@@ -283,6 +288,7 @@
 				19C4E3CF146F893B00C425A6 /* csuBayesianProject.cpp in Sources */,
 				19086B66147752C3002C6FB3 /* csuSubspaceTrain.cpp in Sources */,
 				19086B6914775739002C6FB3 /* csuSubspaceProject.cpp in Sources */,
+				19D691971479C72F009B282C /* csuPreprocessNormalize.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
