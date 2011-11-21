@@ -65,7 +65,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-imDir /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002sfi /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train/scraps/LDATrain.txt /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all_x4.srt /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/distances/scraps/LDA_ldaSoft ldaSoft"
+            argument = "-imDir /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002sfi /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train/scraps/LDATrain.txt /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all.srt /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/distances/scraps/LDA_ldaSoft ldaSoft"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
