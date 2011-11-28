@@ -8,13 +8,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuPreprocessNormalize.cpp"
-         timestampString = "343526342.474082"
+         filePath = "OpenCVTestApp/FaceRec.cpp"
+         timestampString = "344215328.671781"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "523"
-         endingLineNumber = "523"
-         landmarkName = "convertImages()"
+         startingLineNumber = "1002"
+         endingLineNumber = "1002"
+         landmarkName = "NewPerson(void)"
          landmarkType = "7">
       </FileBreakpoint>
       <FileBreakpoint
@@ -22,195 +22,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuPreprocessNormalize.cpp"
-         timestampString = "343526348.970568"
+         filePath = "OpenCVTestApp/FaceRec.cpp"
+         timestampString = "344215328.671781"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "517"
-         endingLineNumber = "517"
-         landmarkName = "convertImages()"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuCommonImage.cpp"
-         timestampString = "343526773.182384"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "199"
-         endingLineNumber = "199"
-         landmarkName = "readPGMImage(const char* filename)"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuCommonImage.cpp"
-         timestampString = "343526773.806298"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "200"
-         endingLineNumber = "200"
-         landmarkName = "readPGMImage(const char* filename)"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuCommonImage.cpp"
-         timestampString = "343526774.550873"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "198"
-         endingLineNumber = "198"
-         landmarkName = "readPGMImage(const char* filename)"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuPreprocessNormalize.cpp"
-         timestampString = "343527784.988267"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "547"
-         endingLineNumber = "547"
-         landmarkName = "convertImages()"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuPreprocessNormalize.cpp"
-         timestampString = "343528430.967128"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "534"
-         endingLineNumber = "534"
-         landmarkName = "convertImages()"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuPreprocessNormalize.cpp"
-         timestampString = "343534099.09738"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "622"
-         endingLineNumber = "622"
-         landmarkName = "convertImages()"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuCommonFile.cpp"
-         timestampString = "343529418.34248"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "597"
-         endingLineNumber = "597"
-         landmarkName = "readFile(const char *fname, int n, Matrix images)"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuCommonImage.cpp"
-         timestampString = "343532325.776507"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "561"
-         endingLineNumber = "561"
-         landmarkName = "writeFeretImage(const Image im, const char *fname)"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuCommonImage.cpp"
-         timestampString = "343532342.785296"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "521"
-         endingLineNumber = "521"
-         landmarkName = "writeFeretImage(const Image im, const char *fname)"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuCommonImage.cpp"
-         timestampString = "343532345.528947"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "522"
-         endingLineNumber = "522"
-         landmarkName = "writeFeretImage(const Image im, const char *fname)"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuCommonImage.cpp"
-         timestampString = "343532346.136714"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "523"
-         endingLineNumber = "523"
-         landmarkName = "writeFeretImage(const Image im, const char *fname)"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuCommonImage.cpp"
-         timestampString = "343532374.83942"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "530"
-         endingLineNumber = "530"
-         landmarkName = "writeFeretImage(const Image im, const char *fname)"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "OpenCVTestApp/csuCommonImage.cpp"
-         timestampString = "343532460.450769"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "524"
-         endingLineNumber = "524"
-         landmarkName = "writeFeretImage(const Image im, const char *fname)"
+         startingLineNumber = "1027"
+         endingLineNumber = "1027"
+         landmarkName = "NewPerson(void)"
          landmarkType = "7">
       </FileBreakpoint>
    </FileBreakpoints>

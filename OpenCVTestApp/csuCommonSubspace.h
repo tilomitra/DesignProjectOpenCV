@@ -64,7 +64,7 @@ typedef struct
 } Subspace;
 
 void subspaceTrain (Subspace *s, Matrix images, ImageList *srt, int numSubjects, int dropNVectors, CutOffMode cutOffMode, double cutOff, int useLDA, int writeTextInterm);
-void writeSubspace (Subspace *s, char *training_filename, char *imageList, int argc, char**argv);
+void writeSubspace (Subspace *s, char *training_filename, char *imageList);
 void readSubspace (Subspace *s, const char* trainingFile, int quiet);
 
 void validateBasisIsOrthonormal (Matrix basis, int printlevel);

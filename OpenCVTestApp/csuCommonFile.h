@@ -94,7 +94,7 @@ void sortSubjectsBySimilarityToProbe (char *probe, ListOfStrings subjects, char 
 void readFile(const char *fname, int n, Matrix images);
 ImageList* getImageNames(char* imageNamesFile, int *numImages);
 void freeImageNames (ImageList *list);
-Matrix readImages(char *imageNamesFile, char *imageDirectory, int *numPixels, int *numImages, int *numSubjects, ImageList **srt);
+Matrix readImages(char *imageNamesFile, char *imageDirectory, int numPixels, int *numImages, int *numSubjects, ImageList **srt);
 void readFile(const char *fname, int n, Matrix images);
 
 int numImageInImageList(ImageList *srt);

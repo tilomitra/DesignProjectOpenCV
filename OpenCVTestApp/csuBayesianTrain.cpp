@@ -391,12 +391,12 @@ csuBayesianTrain (int argc, char *argv[])
   MESSAGE("Saving intrapersonal training file");
 
   sprintf (filename, "%s.intra", args.trainingFilename);
-  writeSubspace (&intraSubspace, filename, args.imageList, args.argc, args.argv);
+  //writeSubspace (&intraSubspace, filename, args.imageList, args.argc, args.argv);
 
   MESSAGE("Saving extrapersonal training file");
 
   sprintf (filename, "%s.extra", args.trainingFilename);
-  writeSubspace (&extraSubspace, filename, args.imageList, args.argc, args.argv);
+ // writeSubspace (&extraSubspace, filename, args.imageList, args.argc, args.argv);
 
   MESSAGE("Finished Training.");
   

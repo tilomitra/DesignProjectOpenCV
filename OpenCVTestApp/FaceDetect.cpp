@@ -86,7 +86,7 @@ int FaceDetect()
             {
                 
                 CvRect * r = (CvRect*)cvGetSeqElem(pFaceRectSeq, i);
-                cvSetImageROI(image,cvRect(r->x+20, r->y+40, r->width,r->height)); //selecting the region of interest from the image i.e. the rectangle containing the face
+                cvSetImageROI(image,cvRect(r->x, r->y, r->width,r->height)); //selecting the region of interest from the image i.e. the rectangle containing the face
                 faceimage = cvCreateImage(cvGetSize(image),image->depth, image->nChannels);//creating an image of same size and dimensions of the region of interest
                 
                 cvCopy(image,faceimage,NULL);

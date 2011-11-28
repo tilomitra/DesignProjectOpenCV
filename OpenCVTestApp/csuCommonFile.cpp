@@ -739,7 +739,7 @@ ImageList* getImageNames(char* imageNamesFile, int *numImages) {
  *
  * @returns A Matrix containing all of the images
  */
-Matrix readImages(char *imageNamesFile, char *imageDirectory, int *numPixels, int *numImages, int *numSubjects, ImageList **srt) {
+Matrix readImages(char *imageNamesFile, char *imageDirectory, int numPixels, int *numImages, int *numSubjects, ImageList **srt) {
     int i;
     Matrix images;
     ImageList *subject, *replicate;
@@ -753,13 +753,16 @@ Matrix readImages(char *imageNamesFile, char *imageDirectory, int *numPixels, in
     /* Automatically determine number of pixels in images    */
 
     DEBUG(1, "Autodetecting number of pixels, i.e. vector length based on the size of image 0.");
-    *numPixels = autoFileLength(makePath(imageDirectory, (*srt)->filename));
-    DEBUG_INT(1, "Vector length", * numPixels);
-    DEBUG_CHECK(*numPixels > 0, "Error positive value required for a Vector Length");
+    const char * path;
+    path = makePath(imageDirectory, (*srt)->filename);
+   // *numPixels = autoFileLength(makePath(imageDirectory, (*srt)->filename));
+    numPixels = autoFileLength(path);
+    DEBUG_INT(1, "Vector length",  numPixels);
+    DEBUG_CHECK(numPixels > 0, "Error positive value required for a Vector Length");
 
     /* Images stored in the columns of a matrix */
     DEBUG(1, "Allocating image matrix");
-    images = makeMatrix(*numPixels, *numImages);
+    images = makeMatrix(numPixels, *numImages);
 
     i = 0;
     (*numSubjects) = 0;

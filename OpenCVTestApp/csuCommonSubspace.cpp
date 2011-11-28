@@ -258,7 +258,9 @@ subspaceTrain (Subspace *s, Matrix images, ImageList *srt, int numSubjects, int 
 */
 
 void
-writeSubspace (Subspace *s, char *training_filename, char *imageList, int argc, char**argv)
+//writeSubspace (Subspace *s, char *training_filename, char *imageList, int argc, char**argv)
+writeSubspace (Subspace *s, char *training_filename, char *imageList)
+
 {
   int i, j;
   FILE* file;
@@ -274,7 +276,7 @@ writeSubspace (Subspace *s, char *training_filename, char *imageList, int argc, 
     default:             cutOffModeStr = "UNKNOWN"; break;
     }
   
-  MESSAGE1ARG ("Saving trianing information to file %s", training_filename);
+  MESSAGE1ARG ("Saving training information to file %s", training_filename);
 
   file = fopen (training_filename, "wb");
   if (!file) {
@@ -282,10 +284,10 @@ writeSubspace (Subspace *s, char *training_filename, char *imageList, int argc, 
     exit (1);
   }
   
-  fprintf (file, "TRAINING_COMMAND =");
+  fprintf (file, "TRAINING_COMMAND");
   
-  for (i = 0; i < argc; i++)
-    fprintf (file, " %s", argv[i]);
+  //for (i = 0; i < argc; i++)
+    //fprintf (file, " %s", argv[i]);
 
   fprintf (file, "\n");
   fprintf (file, "DATE          = %s", ctime(&ttt));

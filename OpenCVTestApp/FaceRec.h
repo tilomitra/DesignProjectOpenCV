@@ -43,6 +43,7 @@ IplImage* cropImage(const IplImage *img, const CvRect region);// Returns a new i
 IplImage* convertFloatImageToUcharImage(const IplImage *srcImg);// Get an 8-bit equivalent of the 32-bit Float image.
 void saveFloatImage(const char *filename, const IplImage *srcImg);// Store a greyscale floating-point CvMat image into a BMP/JPG/GIF/PNG image, since cvSaveImage() can only handle 8bit images (not 32bit float images).
 CvRect detectFaceInImage(const IplImage *inputImg, const CvHaarClassifierCascade* cascade );// Perform face detection on the input image, using the given Haar cascade classifier.
-
-
+void recognizeFromCam(void);
+void NewPerson(void);
+void StartTraining(void);
 #endif

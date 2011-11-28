@@ -22,9 +22,10 @@
 #include "FaceDetect.h"
 //#include "csuBayesianTrain.h"
 //#include "csuBayesianProject.h"
-#include "csuSubspaceTrain.h"
-#include "csuSubspaceProject.h"
-#include "csuPreprocessNormalize.h"
+#include "LDATrain.h"
+#include "LDA.h"
+#include "LDAPreProcess.h"
+#include "jpg2pgm.h"
 #include <string.h>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -39,33 +40,52 @@ char testfilelocation[256] = "/Users/sachi/Downloads/haarcascades/test.txt";
 string response;
 int option;
 int argc;
+bool saveNextFaces = FALSE;
+char newPersonName[256];
+int newPersonFaces = 0;
+FILE *trainFile;
+char cstr[256];
+int Persons = 0; 
 
 int main(int argc,char **argv)
 {
     do
     {
-        cout<<"Please enter an option"<<endl<<"1 - Training"<<endl<<"2 - Recognition"<<endl<<"3 - LDA Testing"<<endl<<"4 - Preprocess"<<endl<<"5 - LDA Training"<<endl<<"6 - exit"<<endl;
+        cout<<"Please enter an option"<<endl<<"1 - Normalize"<<endl<<"2 - JPGtoPGM"<<endl<<"3 - Face Detection"<<endl<<"4 - EigenFaces"<<endl<<"5 - LDA Training"<<endl<<"6 - LDA Testing"<<endl<<"7 - exit"<<endl<<"8 - new person"<<endl;
         cin >> option;
         switch(option)
         {
             case 1:
-                FaceDetect();
+                PreProcessNormalize();
                 break;
             case 2:
-                learn(trainfilelocation);
-                recognizeFileList(testfilelocation);
+                jpg2pgm();
                 break;
             case 3:
-                lda(argc, argv);
+                FaceDetect();
                 break;
             case 4:
-                PreProcessNormalize(argc, argv);
-                break;
+              //learn(trainfilelocation);
+//                recognizeFileList(testfilelocation);
+            recognizeFromCam();
+                break;                
             case 5:    
-                lda_train(argc, argv);
+                lda_train();
                 break;
             case 6:
+                lda();
+                break;
+            case 7:
                 exit(0);
+            case 8:	
+                NewPerson();
+                //StartTraining();
+                //recognizeFromCam();
+                break;
+            	
+                
+                
+                        
                 
         }
 

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19086B66147752C3002C6FB3 /* csuSubspaceTrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19086B65147752C3002C6FB3 /* csuSubspaceTrain.cpp */; };
-		19086B6914775739002C6FB3 /* csuSubspaceProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19086B6814775739002C6FB3 /* csuSubspaceProject.cpp */; };
+		19086B66147752C3002C6FB3 /* LDATrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19086B65147752C3002C6FB3 /* LDATrain.cpp */; };
+		19086B6914775739002C6FB3 /* LDA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19086B6814775739002C6FB3 /* LDA.cpp */; };
 		1929011D145654CB00CB101A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1929011C145654CB00CB101A /* main.cpp */; };
 		1929011F145654CB00CB101A /* OpenCVTestApp.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1929011E145654CB00CB101A /* OpenCVTestApp.1 */; };
 		192901331456557100CB101A /* libopencv_calib3d.2.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 192901261456557100CB101A /* libopencv_calib3d.2.3.1.dylib */; };
@@ -24,6 +24,7 @@
 		1929013D1456557100CB101A /* libopencv_objdetect.2.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 192901301456557100CB101A /* libopencv_objdetect.2.3.1.dylib */; };
 		1929013E1456557100CB101A /* libopencv_ts.2.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 192901311456557100CB101A /* libopencv_ts.2.3.1.dylib */; };
 		1929013F1456557100CB101A /* libopencv_video.2.3.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 192901321456557100CB101A /* libopencv_video.2.3.1.dylib */; };
+		193A88EB147AE34B00FBECAD /* jpg2pgm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 193A88EA147AE34B00FBECAD /* jpg2pgm.cpp */; };
 		198E6AEF1465DD1F00C81D3E /* FaceDetect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 198E6AEE1465DD1F00C81D3E /* FaceDetect.cpp */; };
 		198E6AF21465E43200C81D3E /* GetDirectoryFiles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 198E6AF11465E43200C81D3E /* GetDirectoryFiles.cpp */; };
 		198E6AF41465F01600C81D3E /* FaceRec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 198E6AF31465F01600C81D3E /* FaceRec.cpp */; };
@@ -39,7 +40,7 @@
 		19C4E3CB146F87F300C425A6 /* csuSubspaceCVEigen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3CA146F87F300C425A6 /* csuSubspaceCVEigen.cpp */; };
 		19C4E3CD146F88DE00C425A6 /* csuBayesianTrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3CC146F88DE00C425A6 /* csuBayesianTrain.cpp */; };
 		19C4E3CF146F893B00C425A6 /* csuBayesianProject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19C4E3CE146F893B00C425A6 /* csuBayesianProject.cpp */; };
-		19D691971479C72F009B282C /* csuPreprocessNormalize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19D691961479C72F009B282C /* csuPreprocessNormalize.cpp */; };
+		19D691971479C72F009B282C /* LDAPreProcess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19D691961479C72F009B282C /* LDAPreProcess.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,10 +58,10 @@
 
 /* Begin PBXFileReference section */
 		19086B6314774EFA002C6FB3 /* csuBayesianProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuBayesianProject.h; sourceTree = "<group>"; };
-		19086B65147752C3002C6FB3 /* csuSubspaceTrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuSubspaceTrain.cpp; sourceTree = "<group>"; };
-		19086B6714775320002C6FB3 /* csuSubspaceTrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuSubspaceTrain.h; sourceTree = "<group>"; };
-		19086B6814775739002C6FB3 /* csuSubspaceProject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuSubspaceProject.cpp; sourceTree = "<group>"; };
-		19086B6A147757A9002C6FB3 /* csuSubspaceProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuSubspaceProject.h; sourceTree = "<group>"; };
+		19086B65147752C3002C6FB3 /* LDATrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LDATrain.cpp; sourceTree = "<group>"; };
+		19086B6714775320002C6FB3 /* LDATrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDATrain.h; sourceTree = "<group>"; };
+		19086B6814775739002C6FB3 /* LDA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LDA.cpp; sourceTree = "<group>"; };
+		19086B6A147757A9002C6FB3 /* LDA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDA.h; sourceTree = "<group>"; };
 		19290118145654CB00CB101A /* OpenCVTestApp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenCVTestApp; sourceTree = BUILT_PRODUCTS_DIR; };
 		1929011C145654CB00CB101A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = /Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/main.cpp; sourceTree = "<absolute>"; };
 		1929011E145654CB00CB101A /* OpenCVTestApp.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = OpenCVTestApp.1; sourceTree = "<group>"; };
@@ -77,6 +78,8 @@
 		192901301456557100CB101A /* libopencv_objdetect.2.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_objdetect.2.3.1.dylib; path = ../../../../../../usr/local/lib/libopencv_objdetect.2.3.1.dylib; sourceTree = "<group>"; };
 		192901311456557100CB101A /* libopencv_ts.2.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_ts.2.3.1.dylib; path = ../../../../../../usr/local/lib/libopencv_ts.2.3.1.dylib; sourceTree = "<group>"; };
 		192901321456557100CB101A /* libopencv_video.2.3.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.2.3.1.dylib; path = ../../../../../../usr/local/lib/libopencv_video.2.3.1.dylib; sourceTree = "<group>"; };
+		193A88EA147AE34B00FBECAD /* jpg2pgm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jpg2pgm.cpp; sourceTree = "<group>"; };
+		193A88ED147AE6ED00FBECAD /* jpg2pgm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jpg2pgm.h; sourceTree = "<group>"; };
 		193F747B1460C50D000F96C3 /* FaceDetect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetect.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		193F747D1460CF9C000F96C3 /* GetDirectoryFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetDirectoryFiles.h; sourceTree = "<group>"; };
 		198E6AEE1465DD1F00C81D3E /* FaceDetect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FaceDetect.cpp; sourceTree = "<group>"; };
@@ -103,8 +106,8 @@
 		19C4E3CE146F893B00C425A6 /* csuBayesianProject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuBayesianProject.cpp; sourceTree = "<group>"; };
 		19D5ACCC145C7FEA001CF1D2 /* PreProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreProcess.h; sourceTree = "<group>"; };
 		19D5ACD8145DDB09001CF1D2 /* FaceRec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceRec.h; sourceTree = "<group>"; };
-		19D691961479C72F009B282C /* csuPreprocessNormalize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = csuPreprocessNormalize.cpp; sourceTree = "<group>"; };
-		19D691991479C8D6009B282C /* csuPreprocessNormalize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuPreprocessNormalize.h; sourceTree = "<group>"; };
+		19D691961479C72F009B282C /* LDAPreProcess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LDAPreProcess.cpp; sourceTree = "<group>"; };
+		19D691991479C8D6009B282C /* LDAPreProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDAPreProcess.h; sourceTree = "<group>"; };
 		19F8BCF81477309E00EFF764 /* csuBayesianTrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csuBayesianTrain.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +157,8 @@
 				192901251456553A00CB101A /* OpenCV Framework */,
 				19D96D251478AD0100601D53 /* LDA */,
 				1929011C145654CB00CB101A /* main.cpp */,
+				193A88EA147AE34B00FBECAD /* jpg2pgm.cpp */,
+				193A88ED147AE6ED00FBECAD /* jpg2pgm.h */,
 				193F747B1460C50D000F96C3 /* FaceDetect.h */,
 				198E6AEE1465DD1F00C81D3E /* FaceDetect.cpp */,
 				193F747D1460CF9C000F96C3 /* GetDirectoryFiles.h */,
@@ -190,12 +195,12 @@
 		19D96D251478AD0100601D53 /* LDA */ = {
 			isa = PBXGroup;
 			children = (
-				19D691961479C72F009B282C /* csuPreprocessNormalize.cpp */,
-				19D691991479C8D6009B282C /* csuPreprocessNormalize.h */,
+				19D691961479C72F009B282C /* LDAPreProcess.cpp */,
+				19D691991479C8D6009B282C /* LDAPreProcess.h */,
 				19F8BCF81477309E00EFF764 /* csuBayesianTrain.h */,
 				19C4E3CC146F88DE00C425A6 /* csuBayesianTrain.cpp */,
-				19086B65147752C3002C6FB3 /* csuSubspaceTrain.cpp */,
-				19086B6714775320002C6FB3 /* csuSubspaceTrain.h */,
+				19086B65147752C3002C6FB3 /* LDATrain.cpp */,
+				19086B6714775320002C6FB3 /* LDATrain.h */,
 				19C4E3C6146F878900C425A6 /* csuSubspaceEigen.cpp */,
 				19C4E3C7146F878900C425A6 /* csuSubspaceFisher.cpp */,
 				19C4E3CA146F87F300C425A6 /* csuSubspaceCVEigen.cpp */,
@@ -206,8 +211,8 @@
 				19C4E3B7146F84A700C425A6 /* csuCommonFile.h */,
 				19C4E3B8146F84A700C425A6 /* csuCommonImage.cpp */,
 				19C4E3CE146F893B00C425A6 /* csuBayesianProject.cpp */,
-				19086B6814775739002C6FB3 /* csuSubspaceProject.cpp */,
-				19086B6A147757A9002C6FB3 /* csuSubspaceProject.h */,
+				19086B6814775739002C6FB3 /* LDA.cpp */,
+				19086B6A147757A9002C6FB3 /* LDA.h */,
 				19086B6314774EFA002C6FB3 /* csuBayesianProject.h */,
 				19C4E3B9146F84A800C425A6 /* csuCommonImage.h */,
 				19C4E3BA146F84A800C425A6 /* csuCommonMatrix.cpp */,
@@ -286,9 +291,10 @@
 				19C4E3CB146F87F300C425A6 /* csuSubspaceCVEigen.cpp in Sources */,
 				19C4E3CD146F88DE00C425A6 /* csuBayesianTrain.cpp in Sources */,
 				19C4E3CF146F893B00C425A6 /* csuBayesianProject.cpp in Sources */,
-				19086B66147752C3002C6FB3 /* csuSubspaceTrain.cpp in Sources */,
-				19086B6914775739002C6FB3 /* csuSubspaceProject.cpp in Sources */,
-				19D691971479C72F009B282C /* csuPreprocessNormalize.cpp in Sources */,
+				19086B66147752C3002C6FB3 /* LDATrain.cpp in Sources */,
+				19086B6914775739002C6FB3 /* LDA.cpp in Sources */,
+				19D691971479C72F009B282C /* LDAPreProcess.cpp in Sources */,
+				193A88EB147AE34B00FBECAD /* jpg2pgm.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
