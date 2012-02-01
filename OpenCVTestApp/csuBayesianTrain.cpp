@@ -76,106 +76,106 @@ Arguments;
  * @param argc The number of arguments
  * @param argv The arguments
  */
-void
-process_commandtrain (int argc, char **argv, Arguments * args)
-{
-  int i;
-  int param_num = 0;
-  int cutOffSet = 0;
-
-  /******* Set up default values *******/
-
-  args->argc = argc;
-  args->argv = argv;
-
-  args->nIntrapersonal = 100;
-  args->nExtrapersonal = 100;
-  args->distanceMatrix = NULL;
-  args->maxRank        = -1;
-
-  args->cutOffMode      = CUTOFF_SIMPLE;
-  args->cutOff          = DEFAULT_CUTOFF_PERCENT_SIMPLE;
-  args->dropNVectors    = 0;
-
-  debuglevel = 0;
-
-  /******* Read command line arguments *******/
-
-  for (i = 1; i < argc; i++) {
-
-    /* Catch common help requests */
-    if      (readOption       (argc, argv, &i, "-help" )) { usage(argv[0]); }
-    else if (readOption       (argc, argv, &i, "--help")) { usage(argv[0]); }
-
-    /* Read in input directories */
-    else if (readOptionString (argc, argv, &i, "-imDir",     &(args->imageDirectory)));
-    else if (readOptionString (argc, argv, &i, "-distances", &(args->distanceMatrix)));
-
-    /* Read in number of images to generate */
-    else if (readOptionInt    (argc, argv, &i, "-ni", &(args->nIntrapersonal)));
-    else if (readOptionInt    (argc, argv, &i, "-ne", &(args->nExtrapersonal)));
-
-    /* Read in maxRank */
-    else if (readOptionInt    (argc, argv, &i, "-maxRank", &(args->maxRank)));
-
-    /* Read in PCA training options */
-    else if (readOptionInt    (argc, argv, &i, "-dropNVectors", &(args->dropNVectors)));
-
-    else if (readOptionMatch(argc, argv, &i, "-cutOffMode", "NONE"))
-      { args->cutOffMode = CUTOFF_NONE; }
-    else if (readOptionMatch(argc, argv, &i, "-cutOffMode", "SIMPLE"))
-      { args->cutOffMode = CUTOFF_SIMPLE; }
-    else if (readOptionMatch(argc, argv, &i, "-cutOffMode", "ENERGY"))
-      { args->cutOffMode = CUTOFF_ENERGY; }
-    else if (readOptionMatch(argc, argv, &i, "-cutOffMode", "STRETCH"))
-      { args->cutOffMode = CUTOFF_STRETCH; }
-    else if (readOptionMatch(argc, argv, &i, "-cutOffMode", "CLASSES"))
-      { args->cutOffMode = CUTOFF_CLASSES; }
-
-    else if (readOptionDouble (argc, argv, &i, "-cutOff", &(args->cutOff)))
-      {
-	if ((args->cutOff <= 1.0) && (args->cutOff >= 0.000001)) {
-	  printf("WARNING: cutOff value is %f, expects percentage "
-		 "between 0.0 and 100.0", args->cutOff);
-	  printf("         will proceed assuming value is as desired.");
-	}
-	cutOffSet = 1;
-      }   
-
-    /* other flags */
-    else if (readOption       (argc, argv, &i, "-quiet")) { quiet = 1; }
-    else if (readOptionInt    (argc, argv, &i, "-debuglevel", &debuglevel));
-
-    /* check if the current argument is an unparsed option */
-    else if (checkBadOption(argc,argv,&i));
-
-    /* read required arguments */ 
-    else if (param_num == 0) {
-      args->imageList = argv[i];
-      param_num++;
-    }
-    else if (param_num == 1) {
-      args->trainingFilename = strdup (argv[i]);
-      param_num++;
-    } 
-  }
-
-  /* make sure that there are the proper number of required arguments */
-
-  if (param_num != 2){ clParseError(argc,argv,i,"Wrong number of required arguments"); }
-
-  /* Print out the program parameters for appropriate debug level */
-
-  DEBUG_INT (1, "Debuging enabled", debuglevel);
-  if(debuglevel > 0){
-    printf("***************** Program Parameters *********************\n");
-    printf ("Image directory:  %s\n", args->imageDirectory);
-    printf ("Image list:       %s\n", args->imageList);
-    printf ("nIntrapersonal:   %d\n", args->nIntrapersonal);
-    printf ("nExtrapersonal:   %d\n", args->nExtrapersonal);
-    printf ("distanceMatrix:   %s\n ", args->distanceMatrix);
-  }
-}
+//void
+//process_commandtrain (int argc, char **argv, Arguments * args)
+//{
+//  int i;
+//  int param_num = 0;
+//  int cutOffSet = 0;
+//
+//  /******* Set up default values *******/
+//
+//  args->argc = argc;
+//  args->argv = argv;
+//
+//  args->nIntrapersonal = 100;
+//  args->nExtrapersonal = 100;
+//  args->distanceMatrix = NULL;
+//  args->maxRank        = -1;
+//
+//  args->cutOffMode      = CUTOFF_SIMPLE;
+//  args->cutOff          = DEFAULT_CUTOFF_PERCENT_SIMPLE;
+//  args->dropNVectors    = 0;
+//
+//  debuglevel = 0;
+//
+//  /******* Read command line arguments *******/
+//
+//  for (i = 1; i < argc; i++) {
+//
+//    /* Catch common help requests */
+//    if      (readOption       (argc, argv, &i, "-help" )) { usage(argv[0]); }
+//    else if (readOption       (argc, argv, &i, "--help")) { usage(argv[0]); }
+//
+//    /* Read in input directories */
+//    else if (readOptionString (argc, argv, &i, "-imDir",     &(args->imageDirectory)));
+//    else if (readOptionString (argc, argv, &i, "-distances", &(args->distanceMatrix)));
+//
+//    /* Read in number of images to generate */
+//    else if (readOptionInt    (argc, argv, &i, "-ni", &(args->nIntrapersonal)));
+//    else if (readOptionInt    (argc, argv, &i, "-ne", &(args->nExtrapersonal)));
+//
+//    /* Read in maxRank */
+//    else if (readOptionInt    (argc, argv, &i, "-maxRank", &(args->maxRank)));
+//
+//    /* Read in PCA training options */
+//    else if (readOptionInt    (argc, argv, &i, "-dropNVectors", &(args->dropNVectors)));
+//
+//    else if (readOptionMatch(argc, argv, &i, "-cutOffMode", "NONE"))
+//      { args->cutOffMode = CUTOFF_NONE; }
+//    else if (readOptionMatch(argc, argv, &i, "-cutOffMode", "SIMPLE"))
+//      { args->cutOffMode = CUTOFF_SIMPLE; }
+//    else if (readOptionMatch(argc, argv, &i, "-cutOffMode", "ENERGY"))
+//      { args->cutOffMode = CUTOFF_ENERGY; }
+//    else if (readOptionMatch(argc, argv, &i, "-cutOffMode", "STRETCH"))
+//      { args->cutOffMode = CUTOFF_STRETCH; }
+//    else if (readOptionMatch(argc, argv, &i, "-cutOffMode", "CLASSES"))
+//      { args->cutOffMode = CUTOFF_CLASSES; }
+//
+//    else if (readOptionDouble (argc, argv, &i, "-cutOff", &(args->cutOff)))
+//      {
+//	if ((args->cutOff <= 1.0) && (args->cutOff >= 0.000001)) {
+//	  printf("WARNING: cutOff value is %f, expects percentage "
+//		 "between 0.0 and 100.0", args->cutOff);
+//	  printf("         will proceed assuming value is as desired.");
+//	}
+//	cutOffSet = 1;
+//      }   
+//
+//    /* other flags */
+//    else if (readOption       (argc, argv, &i, "-quiet")) { quiet = 1; }
+//    else if (readOptionInt    (argc, argv, &i, "-debuglevel", &debuglevel));
+//
+//    /* check if the current argument is an unparsed option */
+//    else if (checkBadOption(argc,argv,&i));
+//
+//    /* read required arguments */ 
+//    else if (param_num == 0) {
+//      args->imageList = argv[i];
+//      param_num++;
+//    }
+//    else if (param_num == 1) {
+//      args->trainingFilename = strdup (argv[i]);
+//      param_num++;
+//    } 
+//  }
+//
+//  /* make sure that there are the proper number of required arguments */
+//
+//  if (param_num != 2){ clParseError(argc,argv,i,"Wrong number of required arguments"); }
+//
+//  /* Print out the program parameters for appropriate debug level */
+//
+//  DEBUG_INT (1, "Debuging enabled", debuglevel);
+//  if(debuglevel > 0){
+//    printf("***************** Program Parameters *********************\n");
+//    printf ("Image directory:  %s\n", args->imageDirectory);
+//    printf ("Image list:       %s\n", args->imageList);
+//    printf ("nIntrapersonal:   %d\n", args->nIntrapersonal);
+//    printf ("nExtrapersonal:   %d\n", args->nExtrapersonal);
+//    printf ("distanceMatrix:   %s\n ", args->distanceMatrix);
+//  }
+//}
 
 /******************************************************************************
 *                             DIFFERENCE IMAGE ROUTINES                       *
@@ -354,48 +354,49 @@ makeDifferenceImages (char *imageDirectory, char *imageList, char *distanceMatri
     main()
  */
 int
-csuBayesianTrain (int argc, char *argv[])
+csuBayesianTrain()
 {
-  Arguments args;
+    
   Matrix intraImages, extraImages;
   Subspace intraSubspace, extraSubspace;
   char filename[256];
+    int nIntrapersonal;
+    int nExtrapersonal;
+    int dropNVectors = 0;
     ImageList *srt;
-  process_commandtrain (argc, argv, &args);
+    CutOffMode cutOffMode = CUTOFF_SIMPLE;
+    double cutOff = DEFAULT_CUTOFF_PERCENT_SIMPLE;;
+
+
+    char* imageList = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all.srt";;
+    char* imageDirectory = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002sfi";;
+    char* training_Filename = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train/scraps/Bayesian/bayesian";
   MESSAGE (OPENING);
   MESSAGE (VERSION);
 
   /* Sanity check */
 
-  checkReadableDirectory (args.imageDirectory, "%s is not a readable directory");
-  checkReadableFile (args.imageList, "Cannot read subject replicates list %s");
+//  checkReadableDirectory (args.imageDirectory, "%s is not a readable directory");
+//  checkReadableFile (args.imageList, "Cannot read subject replicates list %s");
 
-  makeDifferenceImages (args.imageDirectory,
-			args.imageList,
-			args.distanceMatrix,
-			args.maxRank,
-			args.nIntrapersonal,
-			args.nExtrapersonal,
-			&intraImages,
-			&extraImages
-			);
+  makeDifferenceImages (imageDirectory,imageList,NULL,-1,100,100,&intraImages,&extraImages);
 
   MESSAGE("Training intrapersonal subspace");
     
-  subspaceTrain(&intraSubspace, intraImages, NULL, args.nIntrapersonal, args.dropNVectors, args.cutOffMode, args.cutOff, 0, 0);
+  subspaceTrain(&intraSubspace, intraImages, NULL, nIntrapersonal, dropNVectors,cutOffMode, cutOff, 0, 0);
 
   MESSAGE("Training extrapersonal subspace");
 
-  subspaceTrain(&extraSubspace, extraImages, NULL, args.nExtrapersonal, args.dropNVectors,args.cutOffMode, args.cutOff, 0, 0);
+  subspaceTrain(&extraSubspace, extraImages, NULL, nExtrapersonal, dropNVectors,cutOffMode, cutOff, 0, 0);
 
   MESSAGE("Saving intrapersonal training file");
 
-  sprintf (filename, "%s.intra", args.trainingFilename);
+  sprintf (filename, "%s.intra", training_Filename);
   //writeSubspace (&intraSubspace, filename, args.imageList, args.argc, args.argv);
 
   MESSAGE("Saving extrapersonal training file");
 
-  sprintf (filename, "%s.extra", args.trainingFilename);
+  sprintf (filename, "%s.extra", training_Filename);
  // writeSubspace (&extraSubspace, filename, args.imageList, args.argc, args.argv);
 
   MESSAGE("Finished Training.");

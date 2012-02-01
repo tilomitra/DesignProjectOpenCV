@@ -73,7 +73,7 @@ Matrix centerThenProjectImages (Subspace *s, Matrix images);
 
 void readSubspace (Subspace *s, const char *trainingFile, int quiet);
 Matrix readAndProjectImages (Subspace *s, char *imageNamesFile, char *imageDirectory, int *numImages, ImageList **srt);
-
+//Matrix readAndProjectImages (Subspace *s);
 /* The following are prototypes for functions found in the csuSubspace files. */
 
 /* eigensolvers found in csuSubspaceCVEigen */

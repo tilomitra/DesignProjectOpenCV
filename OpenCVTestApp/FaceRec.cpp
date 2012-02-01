@@ -9,7 +9,11 @@
 #include <iostream>
 #include "FaceRec.h"
 #include <termios.h>
-
+#include <dirent.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include "LDAPreProcess.h"
+#include "LDA.h"
 //#include <curses.h>
 
 // Haar Cascade file, used for Face Detection.
@@ -24,8 +28,8 @@ CvMat    *  personNumTruthMat = 0; // array of person numbers
 //#define	MAX_NAME_LENGTH 256		// Give each name a fixed size for easier code.
 //char **personNames = 0;			// array of person names (indexed by the person number). Added by Shervin.
 vector<string> personNames;			// array of person names (indexed by the person number). Added by Shervin.
-int faceWidth = 120;	// Default dimensions for faces in the face recognition database. Added by Shervin.
-int faceHeight = 90;	//	"		"		"		"		"		"		"		"
+int faceWidth = 128;	// Default dimensions for faces in the face recognition database. Added by Shervin.
+int faceHeight =128;	//	"		"		"		"		"		"		"		"
 int nPersons                  = 0; // the number of people in the training set. Added by Shervin.
 int nTrainFaces               = 0; // the number of training images
 int nEigens                   = 0; // the number of eigenvalues
@@ -37,36 +41,7 @@ CvMat * projectedTrainFaceMat = 0; // projected training faces
 CvCapture* camera = 0;	// The camera device.
 char out_averageImage[255] = "/Users/sachi/Downloads/haarcascades/out_averageImage.bmp";
 char out_eigenFaces[255] = "/Users/sachi/Downloads/haarcascades/out_eigenfaces.bmp";
-char facedata[255] = "/Users/sachi/Downloads/haarcascades/facedata.xml";
-
-int kbhit (void)
-{
-    struct timeval tv;
-    fd_set rdfs;
-    
-    tv.tv_sec = 0;
-    tv.tv_usec = 0;
-    
-    FD_ZERO(&rdfs);
-    FD_SET (STDIN_FILENO, &rdfs);
-    
-    select(STDIN_FILENO+1, &rdfs, NULL, NULL, &tv);
-    return FD_ISSET(STDIN_FILENO, &rdfs);
-    
-}
-
-int getch() {
-    struct termios oldt,
-    newt;
-    int ch;
-    tcgetattr( STDIN_FILENO, &oldt );
-    newt = oldt;
-    newt.c_lflag &= ~( ICANON | ECHO );
-    tcsetattr( STDIN_FILENO, TCSANOW, &newt );
-    ch = getchar();
-    tcsetattr( STDIN_FILENO, TCSANOW, &oldt );
-    return ch;
-} 
+char facedata[255] = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/facedata.xml";
 
 // Save all the eigenvectors as images, so that they can be checked.
 void storeEigenfaceImages()
@@ -421,7 +396,7 @@ int loadFaceImgArray(char filename[252])
 
 
 // Recognize the face in each of the test images given, and compare the results with the truth.
-void recognizeFileList(char *szFileTest)
+vector<string> recognizeFileList(char *szFileTest)
 {
     int i, nTestFaces  = 0;         // the number of test images
     CvMat * trainPersonNumMat = 0;  // the person numbers during training
@@ -432,24 +407,40 @@ void recognizeFileList(char *szFileTest)
     double timeFaceRecognizeStart;
     double tallyFaceRecognizeTime;
     float confidence;
-    
+    string result;
+    IplImage *source;
+    IplImage *greyImg;
+    IplImage *equalizedImg;
     // load test images and ground truth for person number
-    nTestFaces = loadFaceImgArray(szFileTest);
-    printf("%d test faces loaded\n", nTestFaces);
-    
+//    nTestFaces = loadFaceImgArray(szFileTest);
+//    printf("%d test faces loaded\n", nTestFaces);
+    source = cvLoadImage( szFileTest, CV_LOAD_IMAGE_COLOR );
+    if( source == 0 ) {
+        fprintf( stderr, "Cannot load file %s!\n", szFileTest);
+    }
+    greyImg = convertImageToGreyscale(source);
+    equalizedImg = cvCreateImage(cvGetSize(greyImg), 8, 1);	// Create an empty greyscale image
+    cvEqualizeHist(greyImg, equalizedImg);
+    if (!equalizedImg) 
+    {
+        printf("ERROR: Don't have input image!\n");
+        exit(1);
+    }
     // load the saved training data
-    if( !loadTrainingData( &trainPersonNumMat ) ) return;
+//    loadTrainingData(&trainPersonNumMat);
+    if( !loadTrainingData( &trainPersonNumMat ) ) printf("failed loading train data") ;
     
     // project the test images onto the PCA subspace
     projectedTestFace = (float *)cvAlloc( nEigens*sizeof(float) );
     timeFaceRecognizeStart = (double)cvGetTickCount();	// Record the timing.
-    for(i=0; i<nTestFaces; i++)
-    {
+//    for(i=0; i<nTestFaces; i++)
+//    {
+    if(nEigens > 0){
         int iNearest, nearest, truth;
         
         // project the test image onto the PCA subspace
         cvEigenDecomposite(
-                           faceImgArr[i],
+                           equalizedImg,
                            nEigens,
                            eigenVectArr,
                            0, 0,
@@ -457,31 +448,36 @@ void recognizeFileList(char *szFileTest)
                            projectedTestFace);
         
         iNearest = findNearestNeighbor(projectedTestFace, &confidence);
-        truth    = personNumTruthMat->data.i[i];
-        if(iNearest!=-1)
-        {
-            nearest  = trainPersonNumMat->data.i[iNearest];
-        }
-        else
-        {
-            nearest = 0;
-        }
-        
-        if (nearest == truth) {
-            answer = "Correct";
-            nCorrect++;
-        }
-        else {
-            answer = "WRONG!";
-            nWrong++;
-        }
-        printf("nearest = %d, Truth = %d (%s). Confidence = %f\n", nearest, truth, answer, confidence);
+        nearest  = trainPersonNumMat->data.i[iNearest];
     }
-    tallyFaceRecognizeTime = (double)cvGetTickCount() - timeFaceRecognizeStart;
-    if (nCorrect+nWrong > 0) {
-        printf("TOTAL ACCURACY: %d%% out of %d tests.\n", nCorrect * 100/(nCorrect+nWrong), (nCorrect+nWrong));
-        printf("TOTAL TIME: %.1fms average.\n", tallyFaceRecognizeTime/((double)cvGetTickFrequency() * 1000.0 * (nCorrect+nWrong) ) );
-    }
+//        truth    = personNumTruthMat->data.i[iNearest];
+//        if(iNearest!=-1)
+//        {
+//            nearest  = trainPersonNumMat->data.i[iNearest];
+//        }
+//        else
+//        {
+//            nearest = 0;
+//        }
+//        
+//        if (nearest == truth) {
+//            answer = "Correct";
+//            nCorrect++;
+//        }
+//        else {
+//            answer = "WRONG!";
+//            nWrong++;
+//        }
+//        printf("nearest = %d, Truth = %d (%s). Confidence = %f\n", nearest, truth, answer, confidence);
+//    }  
+//    }
+//    tallyFaceRecognizeTime = (double)cvGetTickCount() - timeFaceRecognizeStart;
+//    if (nCorrect+nWrong > 0) {
+////        printf("TOTAL ACCURACY: %d%% out of %d tests.\n", nCorrect * 100/(nCorrect+nWrong), (nCorrect+nWrong));
+//        printf("TOTAL TIME: %.1fms average.\n", tallyFaceRecognizeTime/((double)cvGetTickFrequency() * 1000.0 * (nCorrect+nWrong) ) );
+//    }
+    
+    return personNames;
     
 }
 
@@ -610,7 +606,7 @@ void saveFloatImage(const char *filename, const IplImage *srcImg)
 // Returns a rectangle for the detected region in the given image.
 CvRect detectFaceInImage(const IplImage *inputImg, const CvHaarClassifierCascade* cascade )
 {
-    const CvSize minFeatureSize = cvSize(20, 20);
+    const CvSize minFeatureSize = cvSize(75, 75);
     const int flags = CV_HAAR_FIND_BIGGEST_OBJECT | CV_HAAR_DO_ROUGH_SEARCH;	// Only search for 1 face.
     const float search_scale_factor = 1.1f;
     IplImage *detectImg;
@@ -638,7 +634,7 @@ CvRect detectFaceInImage(const IplImage *inputImg, const CvHaarClassifierCascade
     rects = cvHaarDetectObjects( detectImg, (CvHaarClassifierCascade*)cascade, storage,
                                 search_scale_factor, 3, flags, minFeatureSize );
     t = (double)cvGetTickCount() - t;
-    printf("[Face Detection took %d ms and found %d objects]\n", cvRound( t/((double)cvGetTickFrequency()*1000.0) ), rects->total );
+//    printf("[Face Detection took %d ms and found %d objects]\n", cvRound( t/((double)cvGetTickFrequency()*1000.0) ), rects->total );
     
     // Get the first detected face (the biggest).
     if (rects->total > 0) {
@@ -713,12 +709,13 @@ IplImage* getCameraFrame()
 			exit(1);
 		}
 		// Try to set the camera resolution
-		cvSetCaptureProperty( camera, CV_CAP_PROP_FRAME_WIDTH, 320 );
-		cvSetCaptureProperty( camera, CV_CAP_PROP_FRAME_HEIGHT, 240 );
+		cvSetCaptureProperty( camera, CV_CAP_PROP_FRAME_WIDTH, 640 );
+		cvSetCaptureProperty( camera, CV_CAP_PROP_FRAME_HEIGHT, 480 );
 		// Wait a little, so that the camera can auto-adjust itself
-		//Sleep(1000);	// (in milliseconds)
+		//sleep(10);	// (in milliseconds)
 		frame = cvQueryFrame( camera );	// get the first frame, to make sure the camera is initialized.
-		if (frame) {
+		if (frame) 
+        {
 			printf("Got a camera using a resolution of %dx%d.\n", (int)cvGetCaptureProperty( camera, CV_CAP_PROP_FRAME_WIDTH), (int)cvGetCaptureProperty( camera, CV_CAP_PROP_FRAME_HEIGHT) );
 		}
 	}
@@ -741,22 +738,44 @@ void recognizeFromCam(void)
 	double timeFaceRecognizeStart;
 	double tallyFaceRecognizeTime;
 	CvHaarClassifierCascade* faceCascade;
-	char cstr[256];
+	char DemoImages[256];
+    char LDApgm[256];
+    char LDAsource[256];
+    char DemoImagesdir[256];
+    char LDApgmdir[256];
+    char LDAsourcedir[256];
+    sprintf(DemoImages, "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/DemoImages/test/test.pgm");
+    sprintf(LDAsource, "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/source/pgm/test.pgm");
+    sprintf(LDApgm, "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002pgm/test.pgm");
+    sprintf(DemoImagesdir, "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/DemoImages/test");
+    sprintf(LDApgmdir, "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002pgm");
+    sprintf(LDAsourcedir, "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/source");
+    string LDAresult;
+    
 	bool saveNextFaces = FALSE;
 	char newPersonName[256];
 	int newPersonFaces;
-    
+    int LDA = 1;
 	trainPersonNumMat = 0;  // the person numbers during training
 	projectedTestFace = 0;
-	saveNextFaces = FALSE;
+	saveNextFaces = TRUE;
 	newPersonFaces = 0;
+    FILE *LDAtestFile;
+    FILE *CoordsFile;
+    LDAtestFile = fopen("/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all_x4.srt", "a");
+    CoordsFile = fopen("/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/coords.txt", "a");
+    int n = 0;
+
+    //LDA Testing
+//    FILE *LDAtestFile;
+//    char LDAdir[256];
     
 	printf("Recognizing person in the camera ...\n");
     
 	// Load the previously saved training data
 	if( loadTrainingData( &trainPersonNumMat ) ) {
-		faceWidth = pAvgTrainImg->width;
-		faceHeight = pAvgTrainImg->height;
+//		faceWidth = pAvgTrainImg->width;
+//		faceHeight = pAvgTrainImg->height;
 	}
 	else {
 		//printf("ERROR in recognizeFromCam(): Couldn't load the training data!\n");
@@ -780,10 +799,14 @@ void recognizeFromCam(void)
 	}
     
 	timeFaceRecognizeStart = (double)cvGetTickCount();	// Record the timing.
-    
-	//while (1)
-    for(int n=0; n<100;n++)
+//    LDAtestFile = fopen("/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all_x4.srt", "w");
+
+
+	while (1)
+    //for(int n=0; n<400;n++)
 	{
+
+        int facedetected = 0;
 		int iNearest, nearest, truth;
 		IplImage *camImg;
 		IplImage *greyImg;
@@ -796,74 +819,28 @@ void recognizeFromCam(void)
 		int keyPressed = 0;
 		FILE *trainFile;
 		float confidence;
-        
-		// Handle keyboard input in the console.
-//		if (_kbhit())
-        if( kbhit() != 0 )
-			keyPressed = getchar();
-//        
-//		if (keyPressed == VK_ESCAPE) {	// Check if the user hit the 'Escape' key
-//			break;	// Stop processing input.
-//		}
-		switch (keyPressed) {
-			case 'n':	// Add a new person to the training set.
-				// Train from the following images.
-				printf("Enter your name: ");
-				strcpy(newPersonName, "newPerson");
-				gets(newPersonName);
-				printf("Collecting all images until you hit 't', to start Training the images as '%s' ...\n", newPersonName);
-				newPersonFaces = 0;	// restart training a new person
-				saveNextFaces = TRUE;
-				break;
-			case 't':	// Start training
-				saveNextFaces = FALSE;	// stop saving next faces.
-				// Store the saved data into the training file.
-				printf("Storing the training data for new person '%s'.\n", newPersonName);
-				// Append the new person to the end of the training data.
-				trainFile = fopen("/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train.txt", "a");
-				for (i=0; i<newPersonFaces; i++) {
-					sprintf(cstr, "data/%d_%s%d.pgm", nPersons+1, newPersonName, i+1);
-					fprintf(trainFile, "%d %s %s\n", nPersons+1, newPersonName, cstr);
-				}
-				fclose(trainFile);
-                
-				// Now there is one more person in the database, ready for retraining.
-				//nPersons++;
-                
-				//break;
-                //case 'r':
-                
-				// Re-initialize the local data.
-				projectedTestFace = 0;
-				saveNextFaces = FALSE;
-				newPersonFaces = 0;
-                
-				// Retrain from the new database without shutting down.
-				// Depending on the number of images in the training set and number of people, it might take 30 seconds or so.
-				cvFree( &trainPersonNumMat );	// Free the previous data before getting new data
-				trainPersonNumMat = retrainOnline();
-				// Project the test images onto the PCA subspace
-				cvFree(&projectedTestFace);	// Free the previous data before getting new data
-				projectedTestFace = (float *)cvAlloc( nEigens*sizeof(float) );
-                
-				printf("Recognizing person in the camera ...\n");
-				continue;	// Begin with the next frame.
-				break;
-		}
-        
-		// Get the camera frame
+        int key;
+  
+        key = cvWaitKey(1);
+        if(key != -1)
+        {
+            break;
+        }
+  		// Get the camera frame
 		camImg = getCameraFrame();
-		if (!camImg) {
+		if (!camImg) 
+        {
 			printf("ERROR in recognizeFromCam(): Bad input image!\n");
 			exit(1);
 		}
-		// Make sure the image is greyscale, since the Eigenfaces is only done on greyscale image.
+		// Make sure the image is greyscale, since the Eigenfaces is only done on greyscale image.			
 		greyImg = convertImageToGreyscale(camImg);
         
 		// Perform face detection on the input image, using the given Haar cascade classifier.
 		faceRect = detectFaceInImage(greyImg, faceCascade );
 		// Make sure a valid face was detected.
-		if (faceRect.width > 0) {
+		if (faceRect.width > 0) 
+        {
 			faceImg = cropImage(greyImg, faceRect);	// Get the detected face image.
 			// Make sure the image is the same dimensions as the training images.
 			sizedImg = resizeImage(faceImg, faceWidth, faceHeight);
@@ -871,11 +848,12 @@ void recognizeFromCam(void)
 			equalizedImg = cvCreateImage(cvGetSize(sizedImg), 8, 1);	// Create an empty greyscale image
 			cvEqualizeHist(sizedImg, equalizedImg);
 			processedFaceImg = equalizedImg;
-			if (!processedFaceImg) {
+			if (!processedFaceImg) 
+            {
 				printf("ERROR in recognizeFromCam(): Don't have input image!\n");
 				exit(1);
 			}
-            
+
 			// If the face rec database has been loaded, then try to recognize the person currently detected.
 			if (nEigens > 0) {
 				// project the test image onto the PCA subspace
@@ -892,49 +870,64 @@ void recognizeFromCam(void)
 				nearest  = trainPersonNumMat->data.i[iNearest];
                 
 				printf("Most likely person in camera: '%s' (confidence=%f.\n", personNames[nearest-1].c_str(), confidence);
-                
+                facedetected = 1;
 			}//endif nEigens
             
-			// Possibly save the processed face to the training set.
-			if (saveNextFaces) {
-                // MAYBE GET IT TO ONLY TRAIN SOME IMAGES ?
-				// Use a different filename each time.
-				sprintf(cstr, "data/%d_%s%d.pgm", nPersons+1, newPersonName, newPersonFaces+1);
-				printf("Storing the current face of '%s' into image '%s'.\n", newPersonName, cstr);
-				cvSaveImage(cstr, processedFaceImg, NULL);
-				newPersonFaces++;
-			}
-            
+
+
+            if (n%100 == 0)
+            {
+                fprintf(CoordsFile,"test\n");
+                mkdir(DemoImagesdir,0750);
+                printf("Storing the test face into image '%s'.\n",DemoImages);
+				cvSaveImage(DemoImages, processedFaceImg, NULL);
+                mkdir(LDApgmdir,0750);
+                cvSaveImage(LDApgm, processedFaceImg, NULL);
+                mkdir(LDAsourcedir,0750);
+                cvSaveImage(LDAsource, processedFaceImg, NULL);
+                fprintf(LDAtestFile,"test.sfi\n");
+                PreProcessNormalize();
+                LDAresult = lda();
+            }
+            n++;
 			// Free the resources used for this frame.
 			cvReleaseImage( &greyImg );
 			cvReleaseImage( &faceImg );
 			cvReleaseImage( &sizedImg );
 			cvReleaseImage( &equalizedImg );
 		}
-        
-		// Show the data on the screen.
-		shownImg = cvCloneImage(camImg);
-		if (faceRect.width > 0) {	// Check if a face was detected.
-			// Show the detected face region.
-			cvRectangle(shownImg, cvPoint(faceRect.x, faceRect.y), cvPoint(faceRect.x + faceRect.width-1, faceRect.y + faceRect.height-1), CV_RGB(0,255,0), 1, 8, 0);
-			if (nEigens > 0) {	// Check if the face recognition database is loaded and a person was recognized.
-				// Show the name of the recognized person, overlayed on the image below their face.
-				CvFont font;
-				cvInitFont(&font,CV_FONT_HERSHEY_PLAIN, 1.0, 1.0, 0,1,CV_AA);
-				CvScalar textColor = CV_RGB(0,255,255);	// light blue text
-				char text[256];
-				snprintf(text, sizeof(text)-1, "Name: '%s'", personNames[nearest-1].c_str());
-				cvPutText(shownImg, text, cvPoint(faceRect.x, faceRect.y + faceRect.height + 15), &font, textColor);
-				snprintf(text, sizeof(text)-1, "Confidence: %f", confidence);
-				cvPutText(shownImg, text, cvPoint(faceRect.x, faceRect.y + faceRect.height + 30), &font, textColor);
-			}
-		}
+
+            // Show the data on the screen.
+            shownImg = cvCloneImage(camImg);
+            if (faceRect.width > 50) {	// Check if a face was detected.
+                // Show the detected face region.
+                cvRectangle(shownImg, cvPoint(faceRect.x, faceRect.y), cvPoint(faceRect.x + faceRect.width-1, faceRect.y + faceRect.height-1), CV_RGB(255,255,255), 3, 8, 0);
+                if (nEigens > 0) {	// Check if the face recognition database is loaded and a person was recognized.
+                    // Show the name of the recognized person, overlayed on the image below their face.
+                    
+                    
+                    CvFont bigfont;
+                    CvFont smallfont;
+                    cvInitFont(&bigfont,CV_FONT_HERSHEY_SIMPLEX, 0.8, 0.8, 0,3,CV_AA);
+                    cvInitFont(&smallfont,CV_FONT_HERSHEY_SIMPLEX, 0.5, 0.5, 0,3,CV_AA);
+
+                    CvScalar textColor = CV_RGB(255,255,255);	// light blue text
+                    char text[256];
+
+                    snprintf(text, sizeof(text)-1, "Most likely person: '%s'", personNames[nearest-1].c_str());
+                    cvPutText(shownImg, text, cvPoint(faceRect.x, faceRect.y + faceRect.height + 25), &bigfont, textColor);
+                    snprintf(text, sizeof(text)-1, "LDA Result: '%s'", LDAresult.c_str());
+                    cvPutText(shownImg, text, cvPoint(faceRect.x, faceRect.y + faceRect.height + 50), &bigfont, textColor);
+                    snprintf(text, sizeof(text)-1, "Confidence: %f", confidence);
+                    cvPutText(shownImg, text, cvPoint(faceRect.x, faceRect.y + faceRect.height + 75), &smallfont, textColor);
+                }
+            }
         
 		// Display the image.
 		cvShowImage("Input", shownImg);
         
 		// Give some time for OpenCV to draw the GUI and check if the user has pressed something in the GUI window.
-		keyPressed = cvWaitKey(10);
+//		keyPressed = cvWaitKey(10);
 //		if (keyPressed == VK_ESCAPE) {	// Check if the user hit the 'Escape' key in the GUI window.
 //			break;	// Stop processing input.
 //		}
@@ -944,12 +937,15 @@ void recognizeFromCam(void)
     cvDestroyWindow("Input");
 	tallyFaceRecognizeTime = (double)cvGetTickCount() - timeFaceRecognizeStart;
     
+    fclose(LDAtestFile);
+    PreProcessNormalize();
+
 	// Free the camera and memory resources used.
 	cvReleaseCapture( &camera );
 	cvReleaseHaarClassifierCascade( &faceCascade );
 }
 
-void NewPerson(void)
+void TrainNewPerson(void)
 {
 	int i;
 	CvMat * trainPersonNumMat;  // the person numbers during training
@@ -958,10 +954,17 @@ void NewPerson(void)
 	double tallyFaceRecognizeTime;
 	CvHaarClassifierCascade* faceCascade;
 	char cstr[256];
+    char LDAcstr[256];
+    char Coordscstr[256];
+    char dir[256];
+    char LDAdir[256];
 	bool saveNextFaces = FALSE;
 	char newPersonName[256];
 	int newPersonFaces;
     FILE *trainFile;
+    FILE *LDAtrainFile;
+    FILE *LDAtestFile;
+    FILE *CoordsFile;
 	trainPersonNumMat = 0;  // the person numbers during training
 	projectedTestFace = 0;
 	saveNextFaces = FALSE;
@@ -971,8 +974,8 @@ void NewPerson(void)
     
 	// Load the previously saved training data
 	if( loadTrainingData( &trainPersonNumMat ) ) {
-		faceWidth = pAvgTrainImg->width;
-		faceHeight = pAvgTrainImg->height;
+//		faceWidth = pAvgTrainImg->width;
+//		faceHeight = pAvgTrainImg->height;
 	}
 	else {
 		//printf("ERROR in recognizeFromCam(): Couldn't load the training data!\n");
@@ -997,11 +1000,15 @@ void NewPerson(void)
     
 	timeFaceRecognizeStart = (double)cvGetTickCount();	// Record the timing.
     trainFile = fopen("/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train.txt", "a");
-
+    CoordsFile = fopen("/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/coords.txt", "a");
+    LDAtrainFile = fopen("/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all.srt", "a");
+    LDAtestFile = fopen("/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all_x4.srt", "a");
 	//while (1)
-    for(int n=0; n<50;n++)
+    for(int n=0; n<120;n++)
+        
 	{
-		int iNearest, nearest, truth;
+
+        int iNearest, nearest, truth;
 		IplImage *camImg;
 		IplImage *greyImg;
 		IplImage *faceImg;
@@ -1014,14 +1021,6 @@ void NewPerson(void)
 		
 		float confidence;
                 
-		// Handle keyboard input in the console.
-        //		if (_kbhit())
-//        if( kbhit() != 0 )
-//			keyPressed = getchar();
-        //        
-        //		if (keyPressed == VK_ESCAPE) {	// Check if the user hit the 'Escape' key
-        //			break;	// Stop processing input.
-        //		}
 // Add a new person to the training set.
 				// Train from the following images.
         if(n == 0)
@@ -1038,8 +1037,6 @@ void NewPerson(void)
         }
         //fclose(trainFile);
 
-		
-        
 		// Get the camera frame
 		camImg = getCameraFrame();
 		if (!camImg) {
@@ -1080,21 +1077,28 @@ void NewPerson(void)
 				iNearest = findNearestNeighbor(projectedTestFace, &confidence);
 				nearest  = trainPersonNumMat->data.i[iNearest];
                 
-				printf("Most likely person in camera: '%s' (confidence=%f.\n", personNames[nearest-1].c_str(), confidence);
+//				printf("Most likely person in camera: '%s' (confidence=%f.\n", personNames[nearest-1].c_str(), confidence);
                 
 			}//endif nEigens
             
 			// Possibly save the processed face to the training set.
-			if (saveNextFaces) {
+			if (saveNextFaces && n%8 == 0) {
                 // MAYBE GET IT TO ONLY TRAIN SOME IMAGES ?
 				// Use a different filename each time.
-				sprintf(cstr, "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/%d_%s%d.pgm", nPersons+1, newPersonName, newPersonFaces+1);
-				printf("Storing the current face of '%s' into image '%s'.\n", newPersonName, cstr);
+				sprintf(cstr, "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/DemoImages/%s/%d_%s%d.pgm", newPersonName,nPersons+1, newPersonName, newPersonFaces+1);
+				sprintf(LDAcstr, "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002pgm/%d_%s%d.pgm",nPersons+1, newPersonName, newPersonFaces+1);
+                sprintf(dir, "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/DemoImages/%s",newPersonName);
+                sprintf(LDAdir, "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002pgm");
+                mkdir(dir,0750);
+                printf("Storing the current face of '%s' into image '%s'.\n", newPersonName, cstr);
 				cvSaveImage(cstr, processedFaceImg, NULL);
-//                for (i=0; i<newPersonFaces; i++) {
-                    sprintf(cstr, "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/%d_%s%d.pgm", nPersons+1, newPersonName, newPersonFaces+1);
+                mkdir(LDAdir,0750);
+                cvSaveImage(LDAcstr, processedFaceImg, NULL);
+                    sprintf(cstr, "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/DemoImages/%s/%d_%s%d.pgm", newPersonName,nPersons+1, newPersonName, newPersonFaces+1);
+                fprintf(LDAtrainFile,"%d_%s%d.sfi ", nPersons+1, newPersonName, newPersonFaces+1);
+                fprintf(LDAtestFile,"%d_%s%d.sfi\n", nPersons+1, newPersonName, newPersonFaces+1);
+                fprintf(CoordsFile,"%d_%s%d\n", nPersons+1, newPersonName, newPersonFaces+1);
                     fprintf(trainFile, "%d %s %s\n", nPersons+1, newPersonName, cstr);
-//                }
 				newPersonFaces++;
                 
 			}
@@ -1110,17 +1114,22 @@ void NewPerson(void)
 		shownImg = cvCloneImage(camImg);
 		if (faceRect.width > 0) {	// Check if a face was detected.
 			// Show the detected face region.
-			cvRectangle(shownImg, cvPoint(faceRect.x, faceRect.y), cvPoint(faceRect.x + faceRect.width-1, faceRect.y + faceRect.height-1), CV_RGB(0,255,0), 1, 8, 0);
+            CvFont bigfont;
+            CvFont smallfont;            
+            CvScalar textColor = CV_RGB(255,255,255);	// light blue text
+            cvInitFont(&bigfont,CV_FONT_HERSHEY_PLAIN, 0.8, 0.8, 0,1,CV_AA);
+            cvInitFont(&smallfont,CV_FONT_HERSHEY_PLAIN, 0.7, 0.7, 0,1,CV_AA);
+            char traintext[256];
+            snprintf(traintext, sizeof(traintext)-1, "Scanning your face...");
+            cvPutText(shownImg, traintext, cvPoint(faceRect.x, faceRect.y + faceRect.height + 25), &smallfont, textColor);
+			cvRectangle(shownImg, cvPoint(faceRect.x, faceRect.y), cvPoint(faceRect.x + faceRect.width-1, faceRect.y + faceRect.height-1), CV_RGB(255,255,255), 3, 8, 0);
 			if (nEigens > 0) {	// Check if the face recognition database is loaded and a person was recognized.
 				// Show the name of the recognized person, overlayed on the image below their face.
-				CvFont font;
-				cvInitFont(&font,CV_FONT_HERSHEY_PLAIN, 1.0, 1.0, 0,1,CV_AA);
-				CvScalar textColor = CV_RGB(0,255,255);	// light blue text
 				char text[256];
 				snprintf(text, sizeof(text)-1, "Name: '%s'", personNames[nearest-1].c_str());
-				cvPutText(shownImg, text, cvPoint(faceRect.x, faceRect.y + faceRect.height + 15), &font, textColor);
+				cvPutText(shownImg, text, cvPoint(faceRect.x, faceRect.y + faceRect.height + 50), &bigfont, textColor);
 				snprintf(text, sizeof(text)-1, "Confidence: %f", confidence);
-				cvPutText(shownImg, text, cvPoint(faceRect.x, faceRect.y + faceRect.height + 30), &font, textColor);
+				cvPutText(shownImg, text, cvPoint(faceRect.x, faceRect.y + faceRect.height + 70), &smallfont, textColor);
 			}
 		}
         
@@ -1129,228 +1138,20 @@ void NewPerson(void)
         
 		// Give some time for OpenCV to draw the GUI and check if the user has pressed something in the GUI window.
 		keyPressed = cvWaitKey(10);
-        //		if (keyPressed == VK_ESCAPE) {	// Check if the user hit the 'Escape' key in the GUI window.
-        //			break;	// Stop processing input.
-        //		}
         
 		cvReleaseImage( &shownImg );
 	}
     cvDestroyWindow("Input");
 	tallyFaceRecognizeTime = (double)cvGetTickCount() - timeFaceRecognizeStart;
-    
+    fprintf(LDAtrainFile,"\n");
 	// Free the camera and memory resources used.
 	cvReleaseCapture( &camera );
 	cvReleaseHaarClassifierCascade( &faceCascade );
+//    fprintf(LDAtestFile,"test.sfi\n");
     fclose(trainFile);
+    fclose(LDAtrainFile);
+    fclose(LDAtestFile);
+    fclose(CoordsFile);
     retrainOnline();
 }
 
-void StartTraining(void)
-{
-	int i;
-	CvMat * trainPersonNumMat;  // the person numbers during training
-	float * projectedTestFace;
-	double timeFaceRecognizeStart;
-	double tallyFaceRecognizeTime;
-	CvHaarClassifierCascade* faceCascade;
-	char cstr[256];
-	bool saveNextFaces = FALSE;
-	char newPersonName[256];
-	int newPersonFaces;
-    
-	trainPersonNumMat = 0;  // the person numbers during training
-	projectedTestFace = 0;
-	saveNextFaces = FALSE;
-	newPersonFaces = 0;
-    
-	printf("Recognizing person in the camera ...\n");
-    
-	// Load the previously saved training data
-	if( loadTrainingData( &trainPersonNumMat ) ) {
-		faceWidth = pAvgTrainImg->width;
-		faceHeight = pAvgTrainImg->height;
-	}
-	else {
-		//printf("ERROR in recognizeFromCam(): Couldn't load the training data!\n");
-		//exit(1);
-	}
-    
-	// Project the test images onto the PCA subspace
-	projectedTestFace = (float *)cvAlloc( nEigens*sizeof(float) );
-    
-	// Create a GUI window for the user to see the camera image.
-	cvNamedWindow("Input", CV_WINDOW_AUTOSIZE);
-    
-	// Make sure there is a "data" folder, for storing the new person.
-    //	mkdir("data");
-    
-	// Load the HaarCascade classifier for face detection.
-	faceCascade = (CvHaarClassifierCascade*)cvLoad(faceCascadeFilename, 0, 0, 0 );
-	if( !faceCascade ) {
-		printf("ERROR in recognizeFromCam(): Could not load Haar cascade Face detection classifier in '%s'.\n", faceCascadeFilename);
-		exit(1);
-	}
-    
-	timeFaceRecognizeStart = (double)cvGetTickCount();	// Record the timing.
-    
-	//while (1)
-    for(int n=0; n<20;n++)
-	{
-		int iNearest, nearest, truth;
-		IplImage *camImg;
-		IplImage *greyImg;
-		IplImage *faceImg;
-		IplImage *sizedImg;
-		IplImage *equalizedImg;
-		IplImage *processedFaceImg;
-		CvRect faceRect;
-		IplImage *shownImg;
-		int keyPressed = 0;
-		FILE *trainFile;
-		float confidence;
-        
-		// Handle keyboard input in the console.
-        //		if (_kbhit())
-        if( kbhit() != 0 )
-			keyPressed = getchar();
-        //        
-        //		if (keyPressed == VK_ESCAPE) {	// Check if the user hit the 'Escape' key
-        //			break;	// Stop processing input.
-        //		}
-
-	// Start training
-        if(n==0)
-        {
-				saveNextFaces = FALSE;	// stop saving next faces.
-				// Store the saved data into the training file.
-				printf("Storing the training data for new person '%s'.\n", newPersonName);
-				// Append the new person to the end of the training data.
-				trainFile = fopen("/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train.txt", "a");
-				for (i=0; i<newPersonFaces; i++) {
-					sprintf(cstr, "data/%d_%s%d.pgm", nPersons+1, newPersonName, i+1);
-					fprintf(trainFile, "%d %s %s\n", nPersons+1, newPersonName, cstr);
-				}
-        
-				fclose(trainFile);
-                
-				// Now there is one more person in the database, ready for retraining.
-				//nPersons++;
-                
-				//break;
-                //case 'r':
-                
-				// Re-initialize the local data.
-				projectedTestFace = 0;
-				saveNextFaces = FALSE;
-				newPersonFaces = 0;
-                
-				// Retrain from the new database without shutting down.
-				// Depending on the number of images in the training set and number of people, it might take 30 seconds or so.
-				cvFree( &trainPersonNumMat );	// Free the previous data before getting new data
-				trainPersonNumMat = retrainOnline();
-				// Project the test images onto the PCA subspace
-				cvFree(&projectedTestFace);	// Free the previous data before getting new data
-				projectedTestFace = (float *)cvAlloc( nEigens*sizeof(float) );
-                
-				printf("Recognizing person in the camera ...\n");
-					// Begin with the next frame.
-				break;
-		}
-        
-		// Get the camera frame
-		camImg = getCameraFrame();
-		if (!camImg) {
-			printf("ERROR in recognizeFromCam(): Bad input image!\n");
-			exit(1);
-		}
-		// Make sure the image is greyscale, since the Eigenfaces is only done on greyscale image.
-		greyImg = convertImageToGreyscale(camImg);
-        
-		// Perform face detection on the input image, using the given Haar cascade classifier.
-		faceRect = detectFaceInImage(greyImg, faceCascade );
-		// Make sure a valid face was detected.
-		if (faceRect.width > 0) {
-			faceImg = cropImage(greyImg, faceRect);	// Get the detected face image.
-			// Make sure the image is the same dimensions as the training images.
-			sizedImg = resizeImage(faceImg, faceWidth, faceHeight);
-			// Give the image a standard brightness and contrast, in case it was too dark or low contrast.
-			equalizedImg = cvCreateImage(cvGetSize(sizedImg), 8, 1);	// Create an empty greyscale image
-			cvEqualizeHist(sizedImg, equalizedImg);
-			processedFaceImg = equalizedImg;
-			if (!processedFaceImg) {
-				printf("ERROR in recognizeFromCam(): Don't have input image!\n");
-				exit(1);
-			}
-            
-			// If the face rec database has been loaded, then try to recognize the person currently detected.
-			if (nEigens > 0) {
-				// project the test image onto the PCA subspace
-				cvEigenDecomposite(
-                                   processedFaceImg,
-                                   nEigens,
-                                   eigenVectArr,
-                                   0, 0,
-                                   pAvgTrainImg,
-                                   projectedTestFace);
-                
-				// Check which person it is most likely to be.
-				iNearest = findNearestNeighbor(projectedTestFace, &confidence);
-				nearest  = trainPersonNumMat->data.i[iNearest];
-                
-				printf("Most likely person in camera: '%s' (confidence=%f.\n", personNames[nearest-1].c_str(), confidence);
-                
-			}//endif nEigens
-            
-			// Possibly save the processed face to the training set.
-			if (saveNextFaces) {
-                // MAYBE GET IT TO ONLY TRAIN SOME IMAGES ?
-				// Use a different filename each time.
-				sprintf(cstr, "data/%d_%s%d.pgm", nPersons+1, newPersonName, newPersonFaces+1);
-				printf("Storing the current face of '%s' into image '%s'.\n", newPersonName, cstr);
-				cvSaveImage(cstr, processedFaceImg, NULL);
-				newPersonFaces++;
-			}
-            
-			// Free the resources used for this frame.
-			cvReleaseImage( &greyImg );
-			cvReleaseImage( &faceImg );
-			cvReleaseImage( &sizedImg );
-			cvReleaseImage( &equalizedImg );
-		}
-        
-		// Show the data on the screen.
-		shownImg = cvCloneImage(camImg);
-		if (faceRect.width > 0) {	// Check if a face was detected.
-			// Show the detected face region.
-			cvRectangle(shownImg, cvPoint(faceRect.x, faceRect.y), cvPoint(faceRect.x + faceRect.width-1, faceRect.y + faceRect.height-1), CV_RGB(0,255,0), 1, 8, 0);
-			if (nEigens > 0) {	// Check if the face recognition database is loaded and a person was recognized.
-				// Show the name of the recognized person, overlayed on the image below their face.
-				CvFont font;
-				cvInitFont(&font,CV_FONT_HERSHEY_PLAIN, 1.0, 1.0, 0,1,CV_AA);
-				CvScalar textColor = CV_RGB(0,255,255);	// light blue text
-				char text[256];
-				snprintf(text, sizeof(text)-1, "Name: '%s'", personNames[nearest-1].c_str());
-				cvPutText(shownImg, text, cvPoint(faceRect.x, faceRect.y + faceRect.height + 15), &font, textColor);
-				snprintf(text, sizeof(text)-1, "Confidence: %f", confidence);
-				cvPutText(shownImg, text, cvPoint(faceRect.x, faceRect.y + faceRect.height + 30), &font, textColor);
-			}
-		}
-        
-		// Display the image.
-		cvShowImage("Input", shownImg);
-        
-		// Give some time for OpenCV to draw the GUI and check if the user has pressed something in the GUI window.
-		keyPressed = cvWaitKey(10);
-        //		if (keyPressed == VK_ESCAPE) {	// Check if the user hit the 'Escape' key in the GUI window.
-        //			break;	// Stop processing input.
-        //		}
-        
-		cvReleaseImage( &shownImg );
-	}
-    cvDestroyWindow("Input");
-	tallyFaceRecognizeTime = (double)cvGetTickCount() - timeFaceRecognizeStart;
-    
-	// Free the camera and memory resources used.
-	cvReleaseCapture( &camera );
-	cvReleaseHaarClassifierCascade( &faceCascade );
-}

@@ -3,20 +3,43 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "GetDirectoryFiles(char*):GetDirectoryFiles.h">
+         contextName = "readAndProjectImages(Subspace*, char*, char*, int*, image_list_node**):csuCommonSubspace.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "directory">
+               value = "s-&gt;numPixels">
+            </PersistentString>
+            <PersistentString
+               value = "autoFileLength(name)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "recognizeFileList(char*):FaceRec.cpp">
+         contextName = "transformImage(image*, int, int, matrix*):csuPreprocessNormalize.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "lda(int, char**):LDA.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "findNearestNeighbor(float*, float*):FaceRec.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "distSq">
+               value = "nEigens">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "main:main.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "(char [256])(null)">
+            </PersistentString>
+            <PersistentString
+               value = "option">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "readImages(char*, char*, int*, int*, int*, image_list_node**):csuCommonFile.cpp">
       </ContextState>
       <ContextState
          contextName = "jpg2pgm():jpg2pgm.cpp">
@@ -28,17 +51,6 @@
                value = "imagename">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "findNearestNeighbor(float*, float*):FaceRec.cpp">
-         <PersistentStrings>
-            <PersistentString
-               value = "nEigens">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "transformImage(image*, int, int, matrix*):csuPreprocessNormalize.cpp">
       </ContextState>
       <ContextState
          contextName = "PreProcessNormalize():LDAPreProcess.cpp">
@@ -55,10 +67,49 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "main:main.cpp">
+         contextName = "lda_train():csuSubspaceTrain.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "(char [256])(null)">
+               value = "srt">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "convertImages(char*, char*, char*, char*, char*):LDAPreProcess.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "recognizeFileList(char*):FaceRec.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "distSq">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GetDirectoryFiles(char*):GetDirectoryFiles.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "directory">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "writeDistancesForImage(char*, char*, matrix*, int, char**):LDA.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "lda():LDA.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "LDAdist">
+            </PersistentString>
+            <PersistentString
+               value = "iter-&gt;second">
+            </PersistentString>
+            <PersistentString
+               value = "distances[1]">
+            </PersistentString>
+            <PersistentString
+               value = "nameByIndex">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -69,20 +120,6 @@
                value = "array[4]">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "readImages(char*, char*, int*, int*, int*, image_list_node**):csuCommonFile.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "lda_train():csuSubspaceTrain.cpp">
-         <PersistentStrings>
-            <PersistentString
-               value = "srt">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "lda(int, char**):LDA.cpp">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

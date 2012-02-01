@@ -9,12 +9,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "OpenCVTestApp/FaceRec.cpp"
-         timestampString = "344215328.671781"
+         timestampString = "349665475.383394"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1002"
-         endingLineNumber = "1002"
-         landmarkName = "NewPerson(void)"
+         startingLineNumber = "878"
+         endingLineNumber = "878"
+         landmarkName = "recognizeFromCam(void)"
          landmarkType = "7">
       </FileBreakpoint>
       <FileBreakpoint
@@ -23,12 +23,54 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "OpenCVTestApp/FaceRec.cpp"
-         timestampString = "344215328.671781"
+         timestampString = "349665475.383394"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1027"
-         endingLineNumber = "1027"
-         landmarkName = "NewPerson(void)"
+         startingLineNumber = "830"
+         endingLineNumber = "830"
+         landmarkName = "recognizeFromCam(void)"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "OpenCVTestApp/FaceRec.cpp"
+         timestampString = "349665475.383394"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "493"
+         endingLineNumber = "493"
+         landmarkName = "convertImageToGreyscale(const IplImage *imageSrc)"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "OpenCVTestApp/FaceRec.cpp"
+         timestampString = "349665475.383394"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "494"
+         endingLineNumber = "494"
+         landmarkName = "convertImageToGreyscale(const IplImage *imageSrc)"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "OpenCVTestApp/FaceDetect.cpp"
+         timestampString = "349664630.8709"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "59"
+         endingLineNumber = "59"
+         landmarkName = "FaceDetect(char inputimage[256])"
          landmarkType = "7">
       </FileBreakpoint>
    </FileBreakpoints>

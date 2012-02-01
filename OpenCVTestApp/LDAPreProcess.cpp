@@ -325,73 +325,12 @@ int PreProcessNormalize(){
     int a = 0;
     size_t found;
     
-    while((dp = readdir(dfd)) != NULL) 
-    {
-        
-        sprintf(namedirectory,"%s/%s",directory,dp->d_name);
-        status = stat (namedirectory, &st);
-        if (S_ISDIR (st.st_mode)) 
-        {
-            line = strcat(str,dp->d_name);
-            line = strcat(str,"\n");
-        }
-
-    }
-    closedir(dfd);
-    pFile = fopen (myfile,"w");
-    fputs(str,pFile);
-    fclose(pFile);
-    ifstream file(myfile);
-    remove(eyeFile);
-    memset(facestr, '\0', sizeof(facestr));    
-    while(!file.eof())
-    {
-        getline(file,fileline[a]);
-        found = fileline[a].find("."); 
-        if(found == string::npos)
-        {
-            sprintf(facedirectory,"%s/%s/face",directory,fileline[a].c_str());
-            DIR* dfdface = opendir(facedirectory);
-            if (dfdface != NULL)
-            {
-                while((dpface = readdir(dfdface)) != NULL) 
-                {
-                    sprintf(namedirectory,"%s/%s",facedirectory,dpface->d_name);
-                    status = stat (namedirectory, &facest);
-                    
-                    if (S_ISREG(facest.st_mode))
-                    {
-                        memset(teststr, '\0', sizeof(teststr));
-                        linetest = strcat(teststr, dpface->d_name);
-                        
-                        if (linetest.find(".jpg")!=string::npos)
-                        {    
-                            faceline = strcat(facestr,dpface->d_name);
-                            
-                            faceline = strcat(facestr,"\n");
-                                
-                        }
-                    }
-                }
-            }
-            
-        }
-        
-        a++;
-    }
-    
-    pFile = fopen (eyeFile,"w");
-    fputs(facestr,pFile);
-    fclose(pFile);
- 
-
     MESSAGE(OPENING);
     MESSAGE(VERSION);
 
     MESSAGE("Converting Images...");
-   // convertImages(eyeFile,inputDir,pgmDir,nrmDir,sfiDir);
-//   fputs(facestr,pFile);
-//   fclose(pFile);
+    convertImages(eyeFile,inputDir,pgmDir,nrmDir,sfiDir);
+
     return 0;
 }
 

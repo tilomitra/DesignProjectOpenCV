@@ -9,6 +9,5 @@
 #ifndef OpenCVTestApp_csuSubspaceProject_h
 #define OpenCVTestApp_csuSubspaceProject_h
 
-int lda();
-
+string lda();
 #endif

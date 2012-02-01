@@ -27,6 +27,6 @@
 //#include <regex>
 using namespace std;
 
-int FaceDetect();
+int FaceDetect(char inputimage[256]);
 
 #endif

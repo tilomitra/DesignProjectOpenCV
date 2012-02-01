@@ -30,6 +30,21 @@ OTHER DEALINGS IN THE SOFTWARE.
 */
 
 #define OPENING  "Project Test Images int Subspace and Compute Pairwise Distances."
+#include <string.h>
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+#include <tr1/unordered_map>
+
+#include "FaceRec.h"
+#include <termios.h>
+#include <dirent.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include "LDAPreProcess.h"
+
+using namespace std;
 
 /*
  Purpose: This program projects face images into a subspace and then
@@ -511,11 +526,25 @@ Matrix computeDistances(const Matrix ims, const Matrix values, int numImages, ch
     return distances;
 }
 
+int ComputeLDAdist(const Matrix ims, const Matrix values, int numImages, char* distName)
+{
+    int i, j;
+    double distances = 0;
+    double dist = DBL_MAX;
+    for (i = 0; i < numImages; i++) 
+    {
+        for (j = 0; j < numImages; j++) 
+        {
+            distances = distances + distanceLDASoft(ims, i, j, values);
+        }
+        
+    }
+}
+
 void writeDistancesForImage(char* distDirectory, char* filename, const Matrix distances, int col, char** names) {
     char name[MAX_FILENAME_LENGTH];
     FILE *file;
     int i;
-
     sprintf(name, "%s/%s", distDirectory, filename);
     file = fopen(name, "w");
     if (!file) {
@@ -524,6 +553,7 @@ void writeDistancesForImage(char* distDirectory, char* filename, const Matrix di
     }
     for (i = 0; i < distances->row_dim; i++) {
         fprintf(file, "%s\t%.16e\n", names[i], ME(distances, i, col));
+//        cout<<ME(distances, i, col)<<endl;
     }
     fclose(file);
 }
@@ -548,7 +578,7 @@ void writeDistancesForImage(char* distDirectory, char* filename, const Matrix di
  one per image.
 */
 
-int lda() {
+string lda() {
     int i;
     //Arguments args;
     int numImages;
@@ -556,38 +586,68 @@ int lda() {
     Matrix subspims, distances;
     Subspace subspace;
     char **nameByIndex;
-    //DistDirNode* ddn;
-    
+//    DistDirNode* ddn;
+    double dist = DBL_MAX;
     char* trainingFile = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train/scraps/LDATrain.txt";
     char* imageNamesFile = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all_x4.srt";
     char* imageDirectory = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002sfi";
     char* distDirectory = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/distances/scraps/LDA_ldaSoft";
     char* distName = "ldaSoft";
     int whiten = 0;
+    char name[MAX_FILENAME_LENGTH];
+    int size;
+    double value = DBL_MAX;
+    string LDAresult;
+    char chars[] = "0123456789_";//characters that need to be removed from LDAresult
+    std::tr1::unordered_map<std::string, double> LDAdist;//hash for storing person name with corresponding computed LDA distances
 
+    
     MESSAGE(OPENING);
     MESSAGE(VERSION);
 
     readSubspace (&subspace, trainingFile, quiet);
 
-
     SAVE_MATRIX(subspace.values);
     MESSAGE1ARG("Reading image data from directory %s and projecting onto the new basis.", imageDirectory);
 
     subspims = readAndProjectImages(&subspace, imageNamesFile, imageDirectory, &numImages, &srt);
-
+    
     MESSAGE1ARG("Computing distances with distance measure %s.", distName);
 
     distances = computeDistances(subspims, subspace.values, numImages, distName);
+        
 
-    MESSAGE2ARG("Writing distance files for %d test images to directory %s", numImages, distDirectory);
-
+//    MESSAGE2ARG("Writing distance files for %d test images to directory %s", 1, distDirectory);
     nameByIndex = getNameByIndex(&srt, numImages);
+
     for (i = 0; i < numImages; i++) 
     {
-        writeProgress("Writing distance files", i,numImages);
-        writeDistancesForImage(distDirectory, nameByIndex[i], distances, i, nameByIndex);
+        LDAdist[nameByIndex[i]]= ME(distances, distances->row_dim-1, i);        
     }
+
+    //finding minimum LDAsoft distance
+    for (std::tr1::unordered_map<std::string, double>::const_iterator iter = LDAdist.begin();iter != LDAdist.end(); ++iter)
+    {
+        cout<<iter->first<<endl;
+        cout<<iter->second<<endl;
+        if (value>iter->second && iter->second != 0.0)
+        {
+            value = iter->second;
+            LDAresult = iter->first;
+        }
+    }
+//    cout<<LDAresult<<" "<<value<<endl;
+
+    for (unsigned int i = 0; i < sizeof(chars); ++i)
+    {
+        LDAresult.erase (std::remove(LDAresult.begin(), LDAresult.end(), chars[i]), LDAresult.end());
+    }
+    LDAresult.replace(LDAresult.find(".sfi"),4,"");
+//    for (i = 0; i < numImages; i++) {
+//        writeProgress("Writing distance files", i,numImages);
+//        writeDistancesForImage(distDirectory, nameByIndex[i], distances, i, nameByIndex);
+//    }
     freeMatrix(distances);
-    return 0;
+    return LDAresult;
 }
+

@@ -9,6 +9,6 @@
 #ifndef OpenCVTestApp_csuBayesianProject_h
 #define OpenCVTestApp_csuBayesianProject_h
 
-int Bayesian(int argc, char *argv[]) ;
+int Bayesian() ;
 
 #endif

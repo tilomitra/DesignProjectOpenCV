@@ -501,6 +501,8 @@ readAndProjectImages (Subspace *s, char *imageNamesFile, char *imageDirectory, i
   return images;
 }
 
+
+
 /* basis_normalize
 
 Using the snapshot method, the Eigenvectors of the original problem are

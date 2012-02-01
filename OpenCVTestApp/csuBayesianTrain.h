@@ -9,6 +9,6 @@
 #ifndef OpenCVTestApp_csuBayesianTrain_h
 #define OpenCVTestApp_csuBayesianTrain_h
 
-int csuBayesianTrain (int argc, char *argv[]);
+int csuBayesianTrain ();
 
 #endif

@@ -88,88 +88,88 @@ Arguments;
  * @param argc The number of arguments
  * @param argv The arguments
  */
-void
-process_command(int argc, char** argv, Arguments* args)
-{
-  int i;
-  int param_num = 0;
-
-  /******* Set up default values *******/
-
-  args->imageDirectory = NULL;
-  args->intrapersonalTrainingFile = NULL;
-  args->extrapersonalTrainingFile = NULL;
-  args->imageNamesFile = NULL;
-  args->maxLikelihoodDistDirectory = NULL;
-  args->bayesianDistDirectory = NULL;
-
-  args->distanceMatrix = NULL;
-  args->maxRank = 50;
-
-  quiet = 0;
-  debuglevel = 0;
-
-  for (i = 1; i < argc; i++) {
-
-    /* Catch common help requests */
-    if      (readOption       (argc, argv, &i, "-help" )) { usage(argv[0]); }
-    else if (readOption       (argc, argv, &i, "--help")) { usage(argv[0]); }
-
-    /* Read in input directories */
-    else if (readOptionString (argc, argv, &i, "-imDir",     &(args->imageDirectory)));
-
-    /* other flags */
-    else if (readOption       (argc, argv, &i, "-quiet")) { quiet = 1; }
-    else if (readOptionInt    (argc, argv, &i, "-debuglevel", &debuglevel));
-
-    else if (readOptionString (argc, argv, &i, "-distances", &(args->distanceMatrix)));
-
-    /* Read in number of images to generate */
-    else if (readOptionInt    (argc, argv, &i, "-maxRank", &(args->maxRank)));
-
-    /* check if the current argument is an unparsed option */
-    else if (checkBadOption(argc,argv,&i));
-
-
-    else if (param_num == 0) {
-      args->intrapersonalTrainingFile = strdup(argv[i]);
-      param_num++;
-    }
-    else if (param_num == 1) {
-      args->extrapersonalTrainingFile = strdup(argv[i]);
-      param_num++;
-    }
-    else if (param_num == 2) {
-      args->imageNamesFile = strdup(argv[i]);
-      param_num++;
-    }
-    else if (param_num == 3) {
-      args->maxLikelihoodDistDirectory = strdup(argv[i]);
-      param_num++;
-    }
-    else if (param_num == 4) {
-      args->bayesianDistDirectory = strdup(argv[i]);
-      param_num++;
-    }
-  }
-
-  if (param_num < 4)
-    usage(argv[0]);
-
-  /* Print out the program parameters for appropriate debug level */
-
-  DEBUG_INT (1, "Debuging enabled", debuglevel);
-
-  if(debuglevel > 0){
-    printf ("***************** Program Parameters *********************\n");
-    printf ("intrapersonalTrainingFile: %s\n", args->intrapersonalTrainingFile);
-    printf ("extrapersonalTrainingFile: %s\n", args->extrapersonalTrainingFile);
-    printf ("imageNamesFile: %s\n", args->imageNamesFile);
-    printf ("maxLikelihoodDistDirectory: %s\n", args->maxLikelihoodDistDirectory);
-    printf ("bayesianDistDirectory: %s\n", args->bayesianDistDirectory);
-    printf ("imageDirectory: %s\n", args->imageDirectory);
-  }
-}
+//void
+//process_command(int argc, char** argv, Arguments* args)
+//{
+//  int i;
+//  int param_num = 0;
+//
+//  /******* Set up default values *******/
+//
+//  args->imageDirectory = NULL;
+//  args->intrapersonalTrainingFile = NULL;
+//  args->extrapersonalTrainingFile = NULL;
+//  args->imageNamesFile = NULL;
+//  args->maxLikelihoodDistDirectory = NULL;
+//  args->bayesianDistDirectory = NULL;
+//
+//  args->distanceMatrix = NULL;
+//  args->maxRank = 50;
+//
+//  quiet = 0;
+//  debuglevel = 0;
+//
+//  for (i = 1; i < argc; i++) {
+//
+//    /* Catch common help requests */
+//    if      (readOption       (argc, argv, &i, "-help" )) { usage(argv[0]); }
+//    else if (readOption       (argc, argv, &i, "--help")) { usage(argv[0]); }
+//
+//    /* Read in input directories */
+//    else if (readOptionString (argc, argv, &i, "-imDir",     &(args->imageDirectory)));
+//
+//    /* other flags */
+//    else if (readOption       (argc, argv, &i, "-quiet")) { quiet = 1; }
+//    else if (readOptionInt    (argc, argv, &i, "-debuglevel", &debuglevel));
+//
+//    else if (readOptionString (argc, argv, &i, "-distances", &(args->distanceMatrix)));
+//
+//    /* Read in number of images to generate */
+//    else if (readOptionInt    (argc, argv, &i, "-maxRank", &(args->maxRank)));
+//
+//    /* check if the current argument is an unparsed option */
+//    else if (checkBadOption(argc,argv,&i));
+//
+//
+//    else if (param_num == 0) {
+//      args->intrapersonalTrainingFile = strdup(argv[i]);
+//      param_num++;
+//    }
+//    else if (param_num == 1) {
+//      args->extrapersonalTrainingFile = strdup(argv[i]);
+//      param_num++;
+//    }
+//    else if (param_num == 2) {
+//      args->imageNamesFile = strdup(argv[i]);
+//      param_num++;
+//    }
+//    else if (param_num == 3) {
+//      args->maxLikelihoodDistDirectory = strdup(argv[i]);
+//      param_num++;
+//    }
+//    else if (param_num == 4) {
+//      args->bayesianDistDirectory = strdup(argv[i]);
+//      param_num++;
+//    }
+//  }
+//
+//  if (param_num < 4)
+//    usage(argv[0]);
+//
+//  /* Print out the program parameters for appropriate debug level */
+//
+//  DEBUG_INT (1, "Debuging enabled", debuglevel);
+//
+//  if(debuglevel > 0){
+//    printf ("***************** Program Parameters *********************\n");
+//    printf ("intrapersonalTrainingFile: %s\n", args->intrapersonalTrainingFile);
+//    printf ("extrapersonalTrainingFile: %s\n", args->extrapersonalTrainingFile);
+//    printf ("imageNamesFile: %s\n", args->imageNamesFile);
+//    printf ("maxLikelihoodDistDirectory: %s\n", args->maxLikelihoodDistDirectory);
+//    printf ("bayesianDistDirectory: %s\n", args->bayesianDistDirectory);
+//    printf ("imageDirectory: %s\n", args->imageDirectory);
+//  }
+//}
 
 /******************************************************************************
 *                            I/O ROUTINES                                     *
@@ -275,7 +275,7 @@ computeMaxLikelihood (Matrix delta, Subspace *s, FTYPE rho)
  pairs of images are computed. Finally, these distances are written to files,
  one per image.
 */
-int Bayesian(int argc, char *argv[]) {
+int Bayesian() {
     int nImages, numPixels;
     int i, j, k, n;
     int progress, progressMax;
@@ -288,34 +288,41 @@ int Bayesian(int argc, char *argv[]) {
     Subspace intrapersonal;
     Subspace extrapersonal;
     FTYPE iRho, eRho, iLikelihood, eLikelihood;
-
+    int maxRank = 50;
+    char* intrapersonalTrainingFile = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train/scraps/Bayesian/bayesian.intra";
+    char* extrapersonalTrainingFile = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/train/scraps/Bayesian/bayesian.extra";
+    char* imageNamesFile = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/imagelists/scrap_all_x4.srt";
+    char* imageDirectory = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/data/csuScrapShots/normSep2002sfi";
+    char* distanceMatrix = NULL;
+    char* maxLikelihoodDistDirectory = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/distances/scraps/Bayesian_ML";
+    char* bayesianDistDirectory = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/distances/scraps/Bayesian_MAP";
     MESSAGE(OPENING);
     MESSAGE(VERSION);
-    process_command(argc, argv, &args);
+//    process_command(argc, argv, &args);
 
     /* Sanity check */
 
-    checkWriteableDirectory (args.bayesianDistDirectory, "%s is not a writeable directory");
-    checkWriteableDirectory (args.maxLikelihoodDistDirectory, "%s is not a writeable directory");
-    checkReadableFile (args.intrapersonalTrainingFile, "Cannot read the training file %s");
-    checkReadableFile (args.extrapersonalTrainingFile, "Cannot read the training file %s");
-    checkReadableFile (args.imageNamesFile, "Cannot read the image list %s");
+//    checkWriteableDirectory (args.bayesianDistDirectory, "%s is not a writeable directory");
+//    checkWriteableDirectory (args.maxLikelihoodDistDirectory, "%s is not a writeable directory");
+//    checkReadableFile (args.intrapersonalTrainingFile, "Cannot read the training file %s");
+//    checkReadableFile (args.extrapersonalTrainingFile, "Cannot read the training file %s");
+//    checkReadableFile (args.imageNamesFile, "Cannot read the image list %s");
 
     /* Begin execution */
 
-    MESSAGE1ARG("Reading intrapersonal subspace %s", args.intrapersonalTrainingFile);
-    readSubspace (&intrapersonal, args.intrapersonalTrainingFile, quiet);
+    MESSAGE1ARG("Reading intrapersonal subspace %s", intrapersonalTrainingFile);
+    readSubspace (&intrapersonal, intrapersonalTrainingFile, quiet);
 
-    MESSAGE1ARG("Reading extrapersonal subspace %s", args.extrapersonalTrainingFile);
-    readSubspace (&extrapersonal, args.extrapersonalTrainingFile, quiet);
+    MESSAGE1ARG("Reading extrapersonal subspace %s", extrapersonalTrainingFile);
+    readSubspace (&extrapersonal, extrapersonalTrainingFile, quiet);
 
-    MESSAGE1ARG("Reading image list from %s", args.imageNamesFile);
+    MESSAGE1ARG("Reading image list from %s", imageNamesFile);
 
-    images = readListOfStrings (args.imageNamesFile, &nImages);
+    images = readListOfStrings (imageNamesFile, &nImages);
 
     /* Allocate storage for difference image */
 
-    numPixels = autoFileLength (makePath (args.imageDirectory, images[0]));
+    numPixels = autoFileLength (makePath (imageDirectory, images[0]));
 
     delta                  = makeMatrix (numPixels, 1);
     data                   = makeMatrix (numPixels,nImages);
@@ -330,7 +337,7 @@ int Bayesian(int argc, char *argv[]) {
     /* Load images */
 
     for (i = 0; i < nImages; i++) {
-      readFile (makePath (args.imageDirectory, images[i]), i, data);
+      readFile (makePath (imageDirectory, images[i]), i, data);
       writeProgress ("Loading images", i, nImages);
     }
 
@@ -341,7 +348,7 @@ int Bayesian(int argc, char *argv[]) {
 
     printf ("iRho: %e eRho: %e\n", iRho, eRho);
 
-    if (args.distanceMatrix == NULL)
+    if (distanceMatrix == NULL)
       {
 	/* Compute the difference images and the Bayesian similarities */
 
@@ -391,9 +398,9 @@ int Bayesian(int argc, char *argv[]) {
 	progressMax = nImages;
       
 	for (i = 0; i < nImages; i++) {
-	  sortSubjectsBySimilarityToProbe (images[i], images, args.distanceMatrix, indices);
+	  sortSubjectsBySimilarityToProbe (images[i], images, distanceMatrix, indices);
 
-	  for (n = 0; n <= args.maxRank; n++) {
+	  for (n = 0; n <= maxRank; n++) {
 	    j = indices[n];
 	  
 	    /* Compute the difference image */
@@ -421,13 +428,13 @@ int Bayesian(int argc, char *argv[]) {
 
     /* Save out the distance matrix */
 
-    MESSAGE1ARG("Writing out distance matrix to %s", args.bayesianDistDirectory);
+    MESSAGE1ARG("Writing out distance matrix to %s", bayesianDistDirectory);
 
-    writeDistanceMatrix (args.bayesianDistDirectory, bayesianDistances, images, nImages);
+    writeDistanceMatrix (bayesianDistDirectory, bayesianDistances, images, nImages);
 
-    MESSAGE1ARG("Writing out distance matrix to %s", args.maxLikelihoodDistDirectory);
+    MESSAGE1ARG("Writing out distance matrix to %s", maxLikelihoodDistDirectory);
 
-    writeDistanceMatrix (args.maxLikelihoodDistDirectory, maxLikelihoodDistances, images, nImages);
+    writeDistanceMatrix (maxLikelihoodDistDirectory, maxLikelihoodDistances, images, nImages);
 
     /* Clean up */
 

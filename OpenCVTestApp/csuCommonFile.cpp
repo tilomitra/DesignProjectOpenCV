@@ -567,7 +567,7 @@ void readFile(const char *fname, int n, Matrix images) {
     }
 
     f = fopen( fname, "rb" );
-    if ( !f ) { printf("Can't open %s\n", fname); exit(1); }
+    if ( !f ) { printf("readFile Can't open %s\n", fname); exit(1); }
 
     /* check to see if image is of type RASTER_ID */
     fgets(line,FILE_LINE_LENGTH,f); /* only read in enough to determine

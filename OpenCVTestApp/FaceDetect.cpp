@@ -9,7 +9,7 @@
 #include <iostream>
 #include "FaceDetect.h"
 
-int FaceDetect()
+int FaceDetect(char inputimage[256])
 {
     
     // declarations
@@ -28,7 +28,7 @@ int FaceDetect()
     char facename[256];
     char haarcascadelocation[256] = "/Users/sachi/Downloads/haarcascades/haarcascade_frontalface_alt.xml";
     char myfile[256] = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/myfile.txt";
-
+    char testface[256] = "/Users/sachi/Documents/development/OpenCVTestApp/OpenCVTestApp/DemoImages/test/testface.pgm";
     // initializations
     IplImage * image = 0;
     IplImage * faceimage = 0;
@@ -39,29 +39,29 @@ int FaceDetect()
     int a = 0;
     size_t found;
     //ask for filename
-    cout << "Please enter name of the person: ";
-    scanf("%s", foldername);
-    sprintf(imagelocation, "%s%s",folderlocation, foldername); 
-    opendir(imagelocation);
-    ifstream file(myfile);
-    GetDirectoryFiles(foldername);//gets the file list and saves it into myfile.txt
+//    cout << "Please enter name of the person: ";
+//    scanf("%s", foldername);
+//    sprintf(imagelocation, "%s%s",folderlocation, foldername); 
+//    opendir(imagelocation);
+//    ifstream file(myfile);
+//    GetDirectoryFiles(foldername);//gets the file list and saves it into myfile.txt
     
     //for(j=1; j<11; j++) //show values read from file
-    while(!file.eof())
-    {
-        getline(file,fileline[a]);
-        found = fileline[a].find(".jpg");
-        if(found!=string::npos)
-        {
-            sprintf(imagename, "%s%s%s%s", folderlocation, foldername,"/",fileline[a].c_str());
-            //sprintf(facepath,"%s%s%s",folderlocation,foldername,"/face/");
-            //mkdir(facepath, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-            image = cvLoadImage(imagename, CV_LOAD_IMAGE_UNCHANGED);
+//    while(!file.eof())
+//    {
+//        getline(file,fileline[a]);
+//        found = fileline[a].find(".jpg");
+//        if(found!=string::npos)
+//        {
+//            sprintf(imagename, "%s%s%s%s", folderlocation, foldername,"/",fileline[a].c_str());
+//            //sprintf(facepath,"%s%s%s",folderlocation,foldername,"/face/");
+//            //mkdir(facepath, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+            image = cvLoadImage(inputimage, CV_LOAD_IMAGE_UNCHANGED);
             pStorage = cvCreateMemStorage(0);
             pCascade = (CvHaarClassifierCascade *)cvLoad
             ((haarcascadelocation),
              0, 0, 0 );
-            
+//            
             // validate that everything initialized properly
             if( !image || !pStorage || !pCascade )
             {
@@ -72,7 +72,7 @@ int FaceDetect()
                        "failed to allocate memory for data storage");
                 exit(-1);
             }
-            
+//            
             // detect faces in images
             pFaceRectSeq = cvHaarDetectObjects
             (image, pCascade, pStorage,
@@ -95,12 +95,12 @@ int FaceDetect()
                 
                 equalizedface = Equalize(faceimage);
                 
-                IplImage * mirrorimage = Equalize(faceimage);
+//                IplImage * mirrorimage = Equalize(faceimage);
                 
-                sprintf(facename,"%s%s%s%d%s", folderlocation,foldername,"/face/",i, fileline[a].c_str());
+//                sprintf(facename,"%s%s%s%d%s", folderlocation,foldername,"/face/",i, fileline[a].c_str());
               
-                cvFlip(equalizedface,mirrorimage,-1);
-                cvSaveImage(facename,equalizedface);
+//                cvFlip(equalizedface,mirrorimage,-1);
+                cvSaveImage(testface,equalizedface);
 
             }
             
@@ -112,11 +112,11 @@ int FaceDetect()
             if(pCascade) cvReleaseHaarClassifierCascade(&pCascade);
             if(pStorage) cvReleaseMemStorage(&pStorage);
             
-        }
+//        }
         
-    }
+//    }
     
-    file.close();
+//    file.close();
     return 0;
     
 }
